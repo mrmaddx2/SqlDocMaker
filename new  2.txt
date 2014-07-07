@@ -1,4 +1,4 @@
-C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools>xsd.exe
+ C:\Program Files (x86)\Microsoft SDKs\Windows\v8.0A\bin\NETFX 4.0 Tools>xsd.exe
 xsd C:\SVN\Console\SPD\SPD.DataModel\XSDs\ORVD.xsd C:\SVN\Console\SPD\SPD.DataModel\XSDs\ORVD1.xsd C:\SVN\Console\SPD\SPD.DataModel\XSDs\ORVD2.xsd C:\SVN\Console\SPD\SPD.DataModel\XSDs\ORVD3.xsd /classes /nologo /enableDataBinding /n:SPD.DataModel /outputdir:C:\SVN\Console\SPD\SPD.DataModel\Classes
 
 xsd C:\SVN\Console\Documentation\Untitled.xml /outputdir:C:\SVN\Console\Documentation\XSDs
