@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:o="object" xmlns:a="attribute" xmlns:c="collection" attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="object" />
+  <xs:element name="Model">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="o:RootObject" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

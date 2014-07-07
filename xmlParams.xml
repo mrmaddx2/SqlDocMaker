@@ -1,0 +1,4 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<InputXmlArguments OutputFolder="" LogFileName="" DefFileName="" OutputFileTypes="" NoExit="">
+  <SqlConnectionProperties ServerName="" DatabaseName="" IntegratedSecurity="" Login="" Password=""/>
+</InputXmlArguments>

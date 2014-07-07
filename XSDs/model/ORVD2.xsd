@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="collection" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="collection" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="object" />
+  <xs:element name="Children">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="object" ref="q1:Model" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DBMS">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="object" ref="q2:Shortcut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PhysicalDiagrams">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q3="object" ref="q3:PhysicalDiagram" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Symbols">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element maxOccurs="unbounded" xmlns:q4="object" ref="q4:ReferenceSymbol" />
+          <xs:element maxOccurs="unbounded" xmlns:q5="object" ref="q5:ExtendedDependencySymbol" />
+          <xs:element maxOccurs="unbounded" xmlns:q6="object" ref="q6:TableSymbol" />
+          <xs:element maxOccurs="unbounded" xmlns:q7="object" ref="q7:ViewSymbol" />
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SourceSymbol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q8="object" ref="q8:ViewSymbol" />
+        <xs:element minOccurs="0" xmlns:q9="object" ref="q9:TableSymbol" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DestinationSymbol">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q10="object" ref="q10:ViewSymbol" />
+        <xs:element minOccurs="0" xmlns:q11="object" ref="q11:TableSymbol" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Object">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q12="object" ref="q12:ExtendedDependency" />
+        <xs:element minOccurs="0" xmlns:q13="object" ref="q13:View" />
+        <xs:element minOccurs="0" xmlns:q14="object" ref="q14:Table" />
+        <xs:element minOccurs="0" xmlns:q15="object" ref="q15:Reference" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClonePredecessor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="object" ref="q16:TableSymbol" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Reports">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="object" ref="q17:IntraModelReport" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Paragraphs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q18="object" ref="q18:ReportHeaderParagraph" />
+        <xs:element minOccurs="0" xmlns:q19="object" ref="q19:ReportFooterParagraph" />
+        <xs:element minOccurs="0" xmlns:q20="object" ref="q20:ReportBaseParagraph" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" xmlns:q21="object" ref="q21:ReportTitleParagraph" />
+        <xs:element minOccurs="0" xmlns:q22="object" ref="q22:ReportParagraph" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Sections">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="object" ref="q23:ReportSection" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Items">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q24="object" ref="q24:CardReportItem" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" xmlns:q25="object" ref="q25:AttributeTextReportItem" />
+        <xs:element minOccurs="0" xmlns:q26="object" ref="q26:BookTitleReportItem" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" xmlns:q27="object" ref="q27:ListReportItem" />
+        <xs:element minOccurs="0" xmlns:q28="object" ref="q28:TitleReportItem" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rows">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q29="object" ref="q29:ListRowDefinition" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PersistentSelections">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q30="object" ref="q30:ReportSelection" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Tabulations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q31="object" ref="q31:ReportTabulation" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TargetModel">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q32="object" ref="q32:TargetModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportLanguages">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q33="object" ref="q33:Shortcut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TargetModels">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q34="object" ref="q34:TargetModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DefaultDiagram">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q35="object" ref="q35:PhysicalDiagram" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Users">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q36="object" ref="q36:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Domains">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q37="object" ref="q37:PhysicalDomain" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Tables">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q38="object" ref="q38:Table" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Columns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" xmlns:q39="object" ref="q39:ViewColumn" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" xmlns:q40="object" ref="q40:Column" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Domain">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q41="object" ref="q41:PhysicalDomain" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Keys">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="object" ref="q42:Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Key.Columns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q43="object" ref="q43:Column" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Indexes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q44="object" ref="q44:Index" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LinkedObject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q45="object" ref="q45:Reference" />
+        <xs:element minOccurs="0" xmlns:q46="object" ref="q46:Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IndexColumns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q47="object" ref="q47:IndexColumn" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Column">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q48="object" ref="q48:Column" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BaseIndex.Owner">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="object" ref="q49:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Owner">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="object" ref="q50:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PrimaryKey">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="object" ref="q51:Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClusterObject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q52="object" ref="q52:Index" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Views">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q53="object" ref="q53:View" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="View.Owner">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q54="object" ref="q54:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="References">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q55="object" ref="q55:Reference" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ParentTable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q56="object" ref="q56:Table" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChildTable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q57="object" ref="q57:Table" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ParentKey">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q58="object" ref="q58:Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Joins">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q59="object" ref="q59:ReferenceJoin" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Object1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q60="object" ref="q60:View" />
+        <xs:element minOccurs="0" xmlns:q61="object" ref="q61:Column" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Object2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q62="object" ref="q62:View" />
+        <xs:element minOccurs="0" xmlns:q63="object" ref="q63:Column" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DefaultGroups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q64="object" ref="q64:Group" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Group.Users">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q65="object" ref="q65:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChildExtendedDependencies">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q66="object" ref="q66:ExtendedDependency" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SessionShortcuts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="object" ref="q67:Shortcut" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

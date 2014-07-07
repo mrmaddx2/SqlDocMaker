@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<InputXmlArguments OutputFolder="OutputFolder1" LogFileName="protocol.log" DefFileName="output" OutputFileTypes="OutputFileTypes1" NoExit="false">
+  <SqlConnectionProperties ServerName="ServerName1" DatabaseName="DatabaseName1" IntegratedSecurity="false" Login="Login1" Password="Password1" />
+</InputXmlArguments>

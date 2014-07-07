@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Doc">
+    <xs:complexType>
+      <xs:sequence>
+        <!--Параметры-->
+        <xs:element name="Params" maxOccurs="1" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <!--Параметр-->
+              <xs:element maxOccurs="unbounded" minOccurs="0" name="Param">
+                <xs:complexType>
+                  <!--Имя параметра-->
+                  <xs:attribute name="Name" type="xs:string" use="required"/>
+                  <!--Тип данных параметра-->
+                  <xs:attribute name="DataTypeName" type="xs:string" use="optional" default=""/>
+                  <!--Комментарии к параметру-->
+                  <xs:attribute name="Comment" type="xs:string" use="required"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <!--Исходящий датасет-->
+        <xs:element maxOccurs="1" minOccurs="0" name="Output_Dataset">
+                <xs:complexType>
+                  <xs:sequence>
+                    <!--Поля в исходящем датасете-->
+                    <xs:element name="Fields" maxOccurs="1" minOccurs="1">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <!--Поле в исходящем датасете-->
+                          <xs:element maxOccurs="unbounded" minOccurs="0" name="Field">
+                            <xs:complexType>
+                              <!--Имя поля-->
+                              <xs:attribute name="Name" type="xs:string" use="required"/>
+                              <!--Тип данных поля-->
+                              <xs:attribute name="DataTypeName" type="xs:string" use="optional" default=""/>
+                              <!--Комментарии к полю-->
+                              <xs:attribute name="Comment" type="xs:string" use="required"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <!--Область поиска исходящего датасета.-->
+                  <xs:attribute default="AUTO" name="SearcArea" type="SearcAreaEnum" />
+                </xs:complexType>
+              </xs:element>
+      </xs:sequence>
+      <!--Имя файла в который будет выгружен объект-->
+      <xs:attribute name="DocName" type="xs:string" use="optional" default=""/>
+      <!--Под каким заголовком будет распологатсьяо описание-->
+      <xs:attribute name="DocSection" type="xs:string" use="required"/>
+      <!--Настройка сортировки следования заголовков в документе-->
+      <xs:attribute name="SortSection" type="xs:string" use="optional" default=""/>
+      <!--Общее описание объекта-->
+      <xs:attribute name="Summary" type="xs:string" use="optional" default=""/>
+      <!--Объект основан на вьюхал и таблицах (перечислять в порядке понижение приоритета через |)-->
+      <xs:attribute name="BasedOnObjects" type="xs:string" use="optional" default=""/>
+      <!--Комментарии к возвращаемому функцией значению-->
+      <xs:attribute name="FunctionResultComment" type="xs:string" use="optional" default=""/>
+    </xs:complexType>
+  </xs:element>
+  <!--Тип-перечисление для указания области поиска исходящего датасета-->
+  <xs:simpleType name="SearcAreaEnum">
+    <xs:restriction base="xs:string">
+      <!--NONE - не искать исходящий датасет вобще-->
+      <xs:enumeration value="NONE" />
+      <!--DOCONLY - Только внутри XML документации-->
+      <xs:enumeration value="DOCONLY" />
+      <!--AUTO - Автоматический поиск-->
+      <xs:enumeration value="AUTO" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+
+
+
+

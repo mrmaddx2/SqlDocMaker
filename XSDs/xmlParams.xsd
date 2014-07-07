@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="InputXmlArguments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="SqlConnectionProperties">
+          <xs:complexType>
+            <xs:attribute name="ServerName" type="xs:string" use="optional" default="(local)"/>
+            <xs:attribute name="DatabaseName" type="xs:string" use="required"/>
+            <xs:attribute name="Login" type="xs:string" use="optional" default=""/>
+            <xs:attribute name="Password" type="xs:string" use="optional" default=""/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="OutputFolder" type="xs:string" use="optional" default=""/>
+      <xs:attribute name="LogFileName" type="xs:string" use="optional" default="protocol.log"/>
+      <xs:attribute name="DefFileName" type="xs:string" use="optional" default="GeneratedDoc"/>
+      <xs:attribute name="OutputFileTypes" type="xs:string" use="optional" default="pdf"/>
+      <xs:attribute name="NoExit" type="xs:boolean" use="optional" default="false"/>
+      <xs:attribute name="OneSectionPerFile" type="xs:boolean" use="optional" default="false"/>
+      <xs:attribute name="SqlObjectsList" use="optional" type="xs:string" default=".*"/>
+      <xs:attribute name="ExcludedSqlObjectsList" use="optional" type="xs:string" default=""/>
+      <xs:attribute name="OpenAfterOutputFolder" type="xs:boolean" default="false" use="optional"/>
+      <xs:attribute name="SpdModelPath" type="xs:string" default="" use="optional"/>
+      <xs:attribute name="GetOutputDatasetsByExec" type="xs:boolean" default="false" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+
+
+
+

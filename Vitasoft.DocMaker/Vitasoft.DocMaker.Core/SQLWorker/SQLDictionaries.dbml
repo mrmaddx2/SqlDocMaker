@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ORVD_TEST" Class="SQLDictionariesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=lex-home-server;Initial Catalog=ORVD_TEST;Persist Security Info=True;User ID=lex_admin" SettingsObjectName="Vitasoft.DocMaker.Core.Properties.Settings" SettingsPropertyName="ORVD_TESTConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="[INFORMATION_SCHEMA].[PARAMETERS]" Member="SqlObjectParameters">
+    <Type Name="SqlObjectParameter">
+      <Column Name="SPECIFIC_CATALOG" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="SPECIFIC_SCHEMA" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="SPECIFIC_NAME" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="ORDINAL_POSITION" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PARAMETER_MODE" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="IS_RESULT" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="AS_LOCATOR" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="PARAMETER_NAME" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="DATA_TYPE" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="CHARACTER_MAXIMUM_LENGTH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CHARACTER_OCTET_LENGTH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COLLATION_CATALOG" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="COLLATION_SCHEMA" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="COLLATION_NAME" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="CHARACTER_SET_CATALOG" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="CHARACTER_SET_SCHEMA" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="CHARACTER_SET_NAME" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="NUMERIC_PRECISION" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="NUMERIC_PRECISION_RADIX" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="NUMERIC_SCALE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DATETIME_PRECISION" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="INTERVAL_TYPE" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="INTERVAL_PRECISION" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="USER_DEFINED_TYPE_CATALOG" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="USER_DEFINED_TYPE_SCHEMA" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="USER_DEFINED_TYPE_NAME" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="SCOPE_CATALOG" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="SCOPE_SCHEMA" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="SCOPE_NAME" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="[sys].[objects]" Member="SqlObjects">
+    <Type Name="SqlObject">
+      <Column Name="name" Type="System.String" DbType="NVarChar(128) NOT NULL" CanBeNull="false" />
+      <Column Name="object_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="principal_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="schema_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="parent_object_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="type_desc" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="create_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="modify_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="is_ms_shipped" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="is_published" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="is_schema_published" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>
