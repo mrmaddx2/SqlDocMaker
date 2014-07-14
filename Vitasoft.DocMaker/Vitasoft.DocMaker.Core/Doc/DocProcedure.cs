@@ -13,7 +13,7 @@ namespace Vitasoft.DocMaker.Core
 {
     public class DocProcedure : DocObject
     {
-        public override OutputSet OutputDataSet { get; set; }
+        public override OutputSet OutputDataSet { get; protected set; }
 
         public DocProcedure(SqlObject sqlObject, DbSchemaReader dbSchemaReader, Logger logger = null, Spd.Model1 model = null, bool getOutputDataSetsByExec = false)
             : base(sqlObject, dbSchemaReader, logger, model)

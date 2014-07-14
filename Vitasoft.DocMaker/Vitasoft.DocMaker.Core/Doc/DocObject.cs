@@ -21,7 +21,7 @@ namespace Vitasoft.DocMaker.Core
         public List<SqlObjectParameter> Parameters { get; private set; }
         public SqlObject SqlObject { get; private set; }
         public Logger _logger;
-        public abstract OutputSet OutputDataSet { get; set; }
+        public abstract OutputSet OutputDataSet { get; protected set; }
 
 
         public DocObject(SqlObject sqlObject, DbSchemaReader dbSchemaReader, Logger logger = null, Spd.Model1 model = null)

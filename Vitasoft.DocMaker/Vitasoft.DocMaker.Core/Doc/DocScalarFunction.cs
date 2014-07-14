@@ -14,7 +14,7 @@ namespace Vitasoft.DocMaker.Core
         public override OutputSet OutputDataSet
         {
             get { return null; }
-            set { throw new NotImplementedException("Класс не поддерживает исходящие датасеты"); }
+            protected set { throw new NotImplementedException("Нельзя задать исходящий датасет. Класс не поддерживает исходящие датасеты"); }
         }
 
         public SqlObjectParameter Result { get; private set; }

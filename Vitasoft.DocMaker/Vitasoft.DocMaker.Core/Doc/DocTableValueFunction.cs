@@ -10,7 +10,7 @@ namespace Vitasoft.DocMaker.Core
 {
     public class DocTableValueFunction : DocFunction
     {
-        public override OutputSet OutputDataSet { get; set; }
+        public override OutputSet OutputDataSet { get; protected set; }
 
         public override string ReturnValueDataType
         {
