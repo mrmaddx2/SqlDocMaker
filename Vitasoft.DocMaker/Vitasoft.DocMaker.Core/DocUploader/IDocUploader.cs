@@ -20,7 +20,7 @@ namespace Vitasoft.DocMaker.Core
         object AddSummaryInfo(object insertAfter, DocObject docObject, Color backgroundColor);
         object ForceSection(string headerText = null);
         object AddParametersInfo(object insertAfter, DocObject docObject, Color headerColor, Color elseColor);
-        object AddReturnDatasetInfo(object insertAfter, DocProcedure docProcedure, Color headerColor, Color elseColor);
+        object AddReturnDatasetInfo(object insertAfter, DocObject docObject, Color headerColor, Color elseColor);
         object AddReturnValueInfo(object insertAfter, DocFunction docFunction, Color backgrouColor);
     }
 }

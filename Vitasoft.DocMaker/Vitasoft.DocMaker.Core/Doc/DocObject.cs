@@ -21,6 +21,7 @@ namespace Vitasoft.DocMaker.Core
         public List<SqlObjectParameter> Parameters { get; private set; }
         public SqlObject SqlObject { get; private set; }
         public Logger _logger;
+        public abstract OutputSet OutputDataSet { get; set; }
 
 
         public DocObject(SqlObject sqlObject, DbSchemaReader dbSchemaReader, Logger logger = null, Spd.Model1 model = null)
@@ -48,7 +49,7 @@ namespace Vitasoft.DocMaker.Core
             }
         }
 
-        public bool FillDocParameters(Spd.Model1 model = null)
+        private bool FillDocParameters(Spd.Model1 model = null)
         {
             bool result = false;
 
@@ -118,6 +119,21 @@ namespace Vitasoft.DocMaker.Core
             return result;
         }
 
+        public string GetOutputFieldComment(OutputField outputField)
+        {
+            DocOutput_DatasetField firstOrDefault = null;
+
+            if (this.Doc != null && this.Doc.Params != null)
+            {
+                firstOrDefault = this.Doc.Output_Dataset.Fields.FirstOrDefault(
+                x =>
+                    string.Equals(x.Name, outputField.Name,
+                        StringComparison.InvariantCultureIgnoreCase));
+            }
+
+            return (firstOrDefault != null ? firstOrDefault.Comment : string.Empty);
+        }
+
         public virtual List<DocSections> SectionsList
         {
             get
@@ -182,6 +198,152 @@ namespace Vitasoft.DocMaker.Core
             }
         }
 
+        protected bool FillDocDataSets(Spd.Model1 model = null)
+        {
+            bool result = false;
+
+            if (this.Doc.Output_Dataset == null)
+            {
+                this.Doc.Output_Dataset = new DocOutput_Dataset();
+            }
+
+            var outputFields =
+                this.OutputDataSet.OutputFields.Where(
+                    x =>
+                        !this.Doc.Output_Dataset.Fields.Any(
+                            y => string.Equals(x.Name, y.Name, StringComparison.InvariantCultureIgnoreCase) && !string.IsNullOrWhiteSpace(y.Comment)));
+
+            if (model != null)
+            {
+                foreach (OutputField outputField in outputFields)
+                {
+                    string commentString = string.Empty;
+
+                    if (!string.IsNullOrWhiteSpace(outputField.SourceObjectName) && !string.IsNullOrWhiteSpace(outputField.SourceFieldName))
+                    {
+                        Spd.View view =
+                            model.Views.FirstOrDefault(
+                                x =>
+                                    string.Equals(x.Name, outputField.SourceObjectName,
+                                        StringComparison.InvariantCultureIgnoreCase));
+
+
+
+                        if (view != null)
+                        {
+                            var viewColumn = view.Columns.ViewColumn.FirstOrDefault(
+                                x =>
+                                    string.Equals(x.Name, outputField.SourceFieldName,
+                                        StringComparison.InvariantCultureIgnoreCase));
+
+                            if (viewColumn != null)
+                            {
+                                commentString = viewColumn.Comment;
+                            }
+                            else
+                            {
+                                if (this._logger != null)
+                                {
+                                    this._logger.LogError("Не найдено поле " + outputField.SourceFieldName + " во вьюхе " + outputField.SourceObjectName);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Spd.Table table =
+                                model.Tables.FirstOrDefault(
+                                    x =>
+                                        string.Equals(x.Name, outputField.SourceObjectName,
+                                            StringComparison.InvariantCultureIgnoreCase));
+
+                            if (table != null)
+                            {
+                                var tableColumn = table.Columns.Column.FirstOrDefault(
+                                    x =>
+                                        string.Equals(x.Name, outputField.SourceFieldName,
+                                            StringComparison.InvariantCultureIgnoreCase));
+
+                                if (tableColumn != null)
+                                {
+                                    commentString = tableColumn.Comment;
+                                }
+                                else
+                                {
+                                    if (this._logger != null)
+                                    {
+                                        this._logger.LogError("Не найдено поле " + outputField.SourceFieldName + " в таблице " + outputField.SourceObjectName);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        List<string> baseOnObjects = this.Doc.BasedOnObjects.Split(Convert.ToChar("|")).ToList();
+
+                        foreach (string currentObject in baseOnObjects)
+                        {
+                            Spd.View view = model.Views.FirstOrDefault(
+                            x => string.Equals(x.Name, currentObject, StringComparison.InvariantCultureIgnoreCase));
+
+                            if (view != null)
+                            {
+                                var viewColumn =
+                                    view.Columns.ViewColumn.FirstOrDefault(
+                                        x =>
+                                            string.Equals(x.Name, outputField.Name,
+                                                StringComparison.InvariantCultureIgnoreCase));
+
+                                if (viewColumn != null)
+                                {
+                                    commentString = viewColumn.Comment;
+                                }
+                            }
+                            else
+                            {
+                                Spd.Table table =
+                                    model.Tables.FirstOrDefault(
+                                        x =>
+                                            string.Equals(x.Name, currentObject, StringComparison.InvariantCultureIgnoreCase));
+
+                                if (table != null)
+                                {
+                                    var tablecolumn =
+                                        table.Columns.Column.FirstOrDefault(x => string.Equals(x.Name, outputField.Name,
+                                            StringComparison.InvariantCultureIgnoreCase));
+
+                                    if (tablecolumn != null)
+                                    {
+                                        commentString = tablecolumn.Comment;
+                                    }
+                                }
+                            }
+
+
+                            if (!string.IsNullOrWhiteSpace(commentString))
+                            {
+                                break;
+                            }
+                        }
+                    }
+
+                    outputField.Comment = commentString;
+                }
+            }
+
+            if (outputFields.Any(x => !string.IsNullOrWhiteSpace(x.Comment)))
+            {
+                result = true;
+            }
+
+            this.Doc.Output_Dataset.Fields =
+                this.Doc.Output_Dataset.Fields.Concat(
+                    outputFields.Select(x => DocOutput_DatasetField.CreateNew(x.Name, x.DataTypeName, x.Comment)))
+                    .ToArray();
+
+            return result;
+        }
+
         public virtual object UploadToDoc(IDocUploader docUploader, string sectionName)
         {
             try
@@ -216,7 +378,7 @@ namespace Vitasoft.DocMaker.Core
             
         }
 
-        public static Doc GetDocsFromBody(string inputString)
+        private static Doc GetDocsFromBody(string inputString)
         {
             try
             {

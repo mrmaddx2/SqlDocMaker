@@ -35,7 +35,7 @@
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
     <Reference Include="itextsharp">
-      <HintPath>..\..\..\..\APM\Телеграфист\Telegraph\Telegraph.WpfView\itextsharp.dll</HintPath>
+      <HintPath>.\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,6 +55,8 @@
     <Compile Include="Doc\DocFunction.cs" />
     <Compile Include="Doc\DocObject.cs" />
     <Compile Include="Doc\DocProcedure.cs" />
+    <Compile Include="Doc\DocScalarFunction.cs" />
+    <Compile Include="Doc\DocTableValueFunction.cs" />
     <Compile Include="Doc\OutputField.cs" />
     <Compile Include="Doc\OutputSet.cs" />
     <Compile Include="ErrorProcessing\ExceptionConverter.cs" />

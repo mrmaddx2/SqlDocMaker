@@ -23,6 +23,7 @@ namespace Vitasoft.DocMaker.Core
 
             result.Params = new DocParam[0];
             result.Output_Dataset = new DocOutput_Dataset();
+            result.Output_Dataset.Fields = new DocOutput_DatasetField[0];
 
             return result;
         }

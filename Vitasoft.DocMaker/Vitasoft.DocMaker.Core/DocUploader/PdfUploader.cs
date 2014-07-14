@@ -240,24 +240,24 @@ namespace Vitasoft.DocMaker.Core
             return insertAfter;
         }
 
-        public object AddReturnDatasetInfo(object insertAfter, DocProcedure docProcedure, Color headerColor, Color elseColor)
+        public object AddReturnDatasetInfo(object insertAfter, DocObject docObject, Color headerColor, Color elseColor)
         {
-            if (docProcedure.OutputDataSet != null)
+            if (docObject.OutputDataSet != null)
             {
                 var table = this.CreateDatasetTable(new float[] { 35f, 20f, 45f });
 
                 this.AddParagraphToDoc(this.CreateParagraph(Text: "Возвращаемый курсор", customFont: new CustomFont(fontSize: 10, bold: true)));
 
-                foreach (OutputField outputField in docProcedure.OutputDataSet.OutputFields)
+                foreach (OutputField outputField in docObject.OutputDataSet.OutputFields)
                 {
                     this.AddNewTableCell(table, outputField.Name, Color.Transparent);
                     this.AddNewTableCell(table, outputField.DataTypeName, Color.Transparent);
 
                     DocOutput_DatasetField docOutputDatasetField = null;
 
-                    if (docProcedure.Doc != null && docProcedure.Doc.Output_Dataset != null && docProcedure.Doc.Output_Dataset.Fields != null)
+                    if (docObject.Doc != null && docObject.Doc.Output_Dataset != null && docObject.Doc.Output_Dataset.Fields != null)
                     {
-                        docOutputDatasetField = docProcedure.Doc.Output_Dataset.Fields.FirstOrDefault(
+                        docOutputDatasetField = docObject.Doc.Output_Dataset.Fields.FirstOrDefault(
                             x => x.Name != null &&
                                  string.Equals(x.Name, outputField.Name,
                                      StringComparison.InvariantCultureIgnoreCase));
@@ -284,7 +284,7 @@ namespace Vitasoft.DocMaker.Core
             this.AddParagraphToDoc(this.CreateParagraph(Text: "Возвращаемое значение", customFont: new CustomFont(fontSize: 10, bold: true)));
 
             this.AddNewTableCell(table,
-                docFunction.Result.FullDataType, backgrouColor, new CustomFont(fontSize: 10));
+                docFunction.ReturnValueDataType, backgrouColor, new CustomFont(fontSize: 10));
 
             this.AddNewTableCell(table,
                 docFunction.ResultComment, backgrouColor, new CustomFont(fontSize: 10));

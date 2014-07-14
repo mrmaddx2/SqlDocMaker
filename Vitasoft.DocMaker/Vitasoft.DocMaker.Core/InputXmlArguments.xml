@@ -25,7 +25,7 @@
   OpenAfterOutputFolder='false' 
   SpdModelPath='..\..\..\..\ORVD.pdm'
   GetOutputDatasetsByExec='true'>
-  <SqlConnectionProperties ServerName='sql02' DatabaseName='ORVD_TEST' Login='ilyuschenko_local' Password='ilyuschenko_local' />
+  <SqlConnectionProperties ServerName='sql02' DatabaseName='ORVD_GENERATE_DOCUMENTATION' Login='ilyuschenko_local' Password='ilyuschenko_local' />
 </InputXmlArguments>
 <!--ServerName - Сервер sql где находится база-->
 <!--DatabaseName - Имя базы-->

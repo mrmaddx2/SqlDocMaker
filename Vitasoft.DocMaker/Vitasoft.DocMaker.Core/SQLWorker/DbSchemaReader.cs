@@ -45,7 +45,16 @@ namespace Vitasoft.DocMaker.Core.SQLWorker
                         logger.WriteLine(currentProc.ToString() + @"/" + allFunc.ToString() + "  " + sqlObject.name, true);
                     }
 
-                    functions.Add(new DocFunction(sqlObject, this, logger, model));
+                    switch (sqlObject.type.ToUpper())
+                    {
+                        case "FN" :
+                            functions.Add(new DocScalarFunction(sqlObject, this, logger, model));
+                            break;
+                        case "IF":
+                            functions.Add(new DocTableValueFunction(sqlObject, this, logger, model));
+                            break;
+                        default: throw new Exception("Не известный тип функции: " + sqlObject.type);
+                    }
                 }
                 catch (Exception exception)
                 {
@@ -169,7 +178,7 @@ namespace Vitasoft.DocMaker.Core.SQLWorker
             return result;
         }
 
-        public OutputSet GetOutputDataSetsByMetadata(DocProcedure docObject)
+        private OutputSet GetOutputDataSetsByMetadata(string queryString)
         {
             OutputSet result = null;
 
@@ -177,12 +186,10 @@ namespace Vitasoft.DocMaker.Core.SQLWorker
             {
                 SqlConnection connection = (Context.Connection as SqlConnection);
 
-                try
-                {                    
-                    using (SqlCommand command = connection.CreateCommand())
+                using (SqlCommand command = connection.CreateCommand())
                     {
                         command.CommandType = CommandType.Text;
-                        command.CommandText = "EXEC sp_describe_first_result_set N'" + docObject.SqlObject.name + "', null, 2";
+                        command.CommandText = queryString;
 
                         {
                             using (SqlDataReader reader = command.ExecuteReader())
@@ -208,15 +215,39 @@ namespace Vitasoft.DocMaker.Core.SQLWorker
                             }
                         }
                     }
-                }
-                catch (Exception mainException)
-                {
-                    throw new Exception(
-                            "Ошибка получения исходящего датасета! Объект:" + docObject.SqlObject.name, mainException);
-                }
             }
 
             return result;
+        }
+
+        public OutputSet GetOutputDataSetsByMetadata(DocObject docObject)
+        {
+            OutputSet result = null;
+
+            try
+            {
+                string objectName = docObject.SqlObject.name;
+
+                if (docObject is DocProcedure)
+                {
+                    result = GetOutputDataSetsByMetadata("EXEC sp_describe_first_result_set N'" + objectName + "', null, 2");
+                }
+                else if(docObject is DocTableValueFunction)
+                {
+                    result = GetOutputDataSetsByMetadata("EXEC sp_describe_first_result_set N'SELECT * FROM " + objectName + "(" + string.Join(", ", docObject.Parameters.Select(x => "null")) + ")', null, 1");
+                }
+                else
+                {
+                    throw new Exception("Получение исходящего датасета не разрешено для переданного типа объекта!");
+                }
+
+                return result;
+            }
+            catch (Exception mainException)
+            {
+                throw new Exception(
+                        docObject.SqlObject.name + " - Ошибка получения исходящего датасета!", mainException);
+            }
         }
 
         public string GetObjectDefinition(string objectName, Logger logger = null)

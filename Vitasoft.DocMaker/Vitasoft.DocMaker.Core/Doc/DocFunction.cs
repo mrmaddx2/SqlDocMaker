@@ -9,20 +9,15 @@ using Spd = Vitasoft.DocMaker.Core.Generated.SpdModelClasses;
 
 namespace Vitasoft.DocMaker.Core
 {
-    public class DocFunction : DocObject
+    public abstract class DocFunction : DocObject
     {
-        public SqlObjectParameter Result { get; private set; }
+        public abstract string ReturnValueDataType {get;}
 
         public DocFunction(SqlObject sqlObject, DbSchemaReader dbSchemaReader, Logger logger = null,
             Spd.Model1 model = null)
             : base(sqlObject, dbSchemaReader, logger, model)
         {
-            Result = this.Parameters.FirstOrDefault(x => x.IS_RESULT == "YES");
 
-            if (Result != null)
-            {
-                this.Parameters.Remove(Result);
-            }
         }
 
         public override object UploadToDoc(IDocUploader docUploader, string sectionName)
@@ -33,10 +28,7 @@ namespace Vitasoft.DocMaker.Core
 
                 var resultObject = insertAfter;
 
-                if (this.Result != null)
-                {
-                    resultObject = docUploader.AddReturnValueInfo(insertAfter, this, Color.Transparent);
-                }
+                resultObject = docUploader.AddReturnValueInfo(insertAfter, this, Color.Transparent);
 
                 if (resultObject != null)
                 {

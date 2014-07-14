@@ -219,9 +219,9 @@ namespace Vitasoft.DocMaker.Core
             templateText.Remove();
         }
 
-        public object AddReturnDatasetInfo(object insertAfter, DocProcedure docProcedure, Color headerColor, Color elseColor)
+        public object AddReturnDatasetInfo(object insertAfter, DocObject docObject, Color headerColor, Color elseColor)
         {
-            if (docProcedure.OutputDataSet != null)
+            if (docObject.OutputDataSet != null)
             {
                 Paragraph datasetHeader = DocxWorker.GenerateOutputDatasetsParagraph();
 
@@ -233,13 +233,13 @@ namespace Vitasoft.DocMaker.Core
 
                 datasetTable.RemoveChild(datasetTable.ChildElements.OfType<TableRow>().Last());
 
-                foreach (var outputField in docProcedure.OutputDataSet.OutputFields)
+                foreach (var outputField in docObject.OutputDataSet.OutputFields)
                 {
                     TableRow currentRow = rowTemplate.Clone() as TableRow;
 
                     this.SetTableCellText(currentRow.ChildElements.OfType<TableCell>().ElementAt(0), outputField.Name);
                     this.SetTableCellText(currentRow.ChildElements.OfType<TableCell>().ElementAt(1), outputField.DataTypeName);
-                    this.SetTableCellText(currentRow.ChildElements.OfType<TableCell>().ElementAt(2), docProcedure.GetOutputFieldComment(outputField));
+                    this.SetTableCellText(currentRow.ChildElements.OfType<TableCell>().ElementAt(2), docObject.GetOutputFieldComment(outputField));
 
                     datasetTable.AppendChild(currentRow);
                 }
@@ -254,32 +254,28 @@ namespace Vitasoft.DocMaker.Core
 
         public object AddReturnValueInfo(object insertAfter, DocFunction docFunction, Color backgrouColor)
         {
-            if (docFunction.Result != null)
-            {
-                Paragraph resultHeader = DocxWorker.GenerateFunctionResultParagraph();
+            Paragraph resultHeader = DocxWorker.GenerateFunctionResultParagraph();
 
-                Table resulTable = DocxWorker.GenerateFunctuionResultTable();
+            Table resulTable = DocxWorker.GenerateFunctuionResultTable();
 
-                (insertAfter as OpenXmlElement).InsertAfterSelf(resultHeader);
+            (insertAfter as OpenXmlElement).InsertAfterSelf(resultHeader);
 
 
-                TableRow rowTemplate = resulTable.ChildElements.OfType<TableRow>().Last().Clone() as TableRow;
+            TableRow rowTemplate = resulTable.ChildElements.OfType<TableRow>().Last().Clone() as TableRow;
 
-                resulTable.RemoveChild(resulTable.ChildElements.OfType<TableRow>().Last());
+            resulTable.RemoveChild(resulTable.ChildElements.OfType<TableRow>().Last());
 
-                TableRow currentRow = rowTemplate.Clone() as TableRow;
+            TableRow currentRow = rowTemplate.Clone() as TableRow;
 
-                this.SetTableCellText(currentRow.ChildElements.OfType<TableCell>().ElementAt(0), docFunction.Result.FullDataType);
-                this.SetTableCellText(currentRow.ChildElements.OfType<TableCell>().ElementAt(1), docFunction.ResultComment);
 
-                resulTable.AppendChild(currentRow);
+            this.SetTableCellText(currentRow.ChildElements.OfType<TableCell>().ElementAt(0), docFunction.ReturnValueDataType);
+            this.SetTableCellText(currentRow.ChildElements.OfType<TableCell>().ElementAt(1), docFunction.ResultComment);
 
-                resultHeader.InsertAfterSelf(resulTable);
+            resulTable.AppendChild(currentRow);
 
-                return resulTable;
-            }
+            resultHeader.InsertAfterSelf(resulTable);
 
-            return insertAfter;
+            return resulTable;
         }
     }
 }
