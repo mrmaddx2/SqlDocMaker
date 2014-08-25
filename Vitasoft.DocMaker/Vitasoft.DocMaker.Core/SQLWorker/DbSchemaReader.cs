@@ -142,7 +142,20 @@ namespace Vitasoft.DocMaker.Core.SQLWorker
                     using (SqlCommand command = connection.CreateCommand())
                     {
                         command.CommandType = CommandType.Text;
-                        command.CommandText = "EXEC " + docObject.SqlObject.name + " " + string.Join(", ", docObject.Parameters.Select(x => x.PARAMETER_NAME + " = NULL").ToList());
+
+                        string tmpParams =
+                            string.Join(Environment.NewLine, docObject.Parameters.Select(
+                                param =>
+                                    "DECLARE " + param.PARAMETER_NAME + " " + param.FullDataType + " = " +
+                                    docObject.GetParamValue(param)
+                                ).ToList());
+
+                        command.CommandText = tmpParams + Environment.NewLine +
+                                              "EXEC " + docObject.SqlObject.name + " " +
+                                              string.Join(", ",
+                                                  docObject.Parameters.Select(
+                                                      x =>
+                                                          x.PARAMETER_NAME + " = " + x.PARAMETER_NAME).ToList());
 
                         {
                             try

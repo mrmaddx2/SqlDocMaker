@@ -10,6 +10,10 @@
               <!--Параметр-->
               <xs:element maxOccurs="unbounded" minOccurs="0" name="Param">
                 <xs:complexType>
+                  <xs:sequence>
+                    <!-- Значение параметра -->
+                    <xs:element minOccurs="0" maxOccurs="1" name="Value" type="DocParamValue" nillable="false"/>
+                  </xs:sequence>
                   <!--Имя параметра-->
                   <xs:attribute name="Name" type="xs:string" use="required"/>
                   <!--Тип данных параметра-->
@@ -74,6 +78,17 @@
       <xs:enumeration value="AUTO" />
     </xs:restriction>
   </xs:simpleType>
+  <!-- Значение параметра -->
+  <!-- Подставляется во время выолнения -->
+  <!-- Предназначен для получения исходящего датасета путем выполнения процедуры -->
+  <xs:complexType name="DocParamValue">
+    <!-- Является ли значение скриптом (true) или конечным значением (false)
+    Конечные значения автоматически кастуются к типу данных параметра
+    Скрипты подставляются "как есть" -->
+    <xs:attribute name="IsScript" type="xs:boolean" default="false"/>
+    <!-- Собственно само значение параметра -->
+    <xs:attribute name="Value" type="xs:string" use="required"/>
+  </xs:complexType>
 </xs:schema>
 
 

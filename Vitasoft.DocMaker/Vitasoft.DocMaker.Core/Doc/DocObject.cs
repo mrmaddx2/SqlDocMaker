@@ -49,6 +49,31 @@ namespace Vitasoft.DocMaker.Core
             }
         }
 
+        public string GetParamValue(SqlObjectParameter parameter)
+        {
+            var value =
+                this.Doc.Params.Where(
+                    x => string.Equals(x.Name, parameter.PARAMETER_NAME, StringComparison.InvariantCultureIgnoreCase))
+                    .Select(x => x.Value)
+                    .FirstOrDefault();
+
+            if (value != null)
+            {
+                if (value.IsScript)
+                {
+                    return value.Value;
+                }
+                else
+                {
+                    return "CAST('" + value.Value + "' AS " + parameter.FullDataType + ")";
+                }
+            }
+            else
+            {
+                return "NULL";
+            }
+        }
+
         private bool FillDocParameters(Spd.Model1 model = null)
         {
             bool result = false;
