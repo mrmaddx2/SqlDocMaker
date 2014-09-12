@@ -1,730 +1,342 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="object" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="object" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import namespace="collection" />
-  <xs:import namespace="attribute" />
-  <xs:element name="RootObject">
+<xs:schema xmlns:tns="collection" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="collection" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="object" />
+  <xs:element name="Children">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="collection" ref="q1:Children" />
+        <xs:element xmlns:q1="object" ref="q1:Model" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="Model">
+  <xs:element name="DBMS">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="attribute" ref="q2:ObjectID" />
-        <xs:element xmlns:q3="attribute" ref="q3:Name" />
-        <xs:element xmlns:q4="attribute" ref="q4:Code" />
-        <xs:element xmlns:q5="attribute" ref="q5:CreationDate" />
-        <xs:element xmlns:q6="attribute" ref="q6:Creator" />
-        <xs:element xmlns:q7="attribute" ref="q7:ModificationDate" />
-        <xs:element xmlns:q8="attribute" ref="q8:Modifier" />
-        <xs:element xmlns:q9="attribute" ref="q9:PackageOptionsText" />
-        <xs:element xmlns:q10="attribute" ref="q10:ModelOptionsText" />
-        <xs:element xmlns:q11="collection" ref="q11:DBMS" />
-        <xs:element xmlns:q12="collection" ref="q12:PhysicalDiagrams" />
-        <xs:element xmlns:q13="collection" ref="q13:Reports" />
-        <xs:element xmlns:q14="collection" ref="q14:DefaultDiagram" />
-        <xs:element xmlns:q15="collection" ref="q15:Users" />
-        <xs:element xmlns:q16="collection" ref="q16:Domains" />
-        <xs:element xmlns:q17="collection" ref="q17:Tables" />
-        <xs:element xmlns:q18="collection" ref="q18:Views" />
-        <xs:element xmlns:q19="collection" ref="q19:References" />
-        <xs:element xmlns:q20="collection" ref="q20:DefaultGroups" />
-        <xs:element xmlns:q21="collection" ref="q21:ChildExtendedDependencies" />
-        <xs:element xmlns:q22="collection" ref="q22:TargetModels" />
+        <xs:element xmlns:q2="object" ref="q2:Shortcut" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="Shortcut">
-    <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q23="attribute" ref="q23:ObjectID" />
-        <xs:element xmlns:q24="attribute" ref="q24:Name" />
-        <xs:element xmlns:q25="attribute" ref="q25:Code" />
-        <xs:element xmlns:q26="attribute" ref="q26:CreationDate" />
-        <xs:element xmlns:q27="attribute" ref="q27:Creator" />
-        <xs:element xmlns:q28="attribute" ref="q28:ModificationDate" />
-        <xs:element xmlns:q29="attribute" ref="q29:Modifier" />
-        <xs:element xmlns:q30="attribute" ref="q30:TargetStereotype" />
-        <xs:element xmlns:q31="attribute" ref="q31:TargetID" />
-        <xs:element xmlns:q32="attribute" ref="q32:TargetClassID" />
-      </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="optional" />
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="PhysicalDiagram">
-    <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q33="attribute" ref="q33:ObjectID" />
-        <xs:element xmlns:q34="attribute" ref="q34:Name" />
-        <xs:element xmlns:q35="attribute" ref="q35:Code" />
-        <xs:element xmlns:q36="attribute" ref="q36:CreationDate" />
-        <xs:element xmlns:q37="attribute" ref="q37:Creator" />
-        <xs:element xmlns:q38="attribute" ref="q38:ModificationDate" />
-        <xs:element xmlns:q39="attribute" ref="q39:Modifier" />
-        <xs:element xmlns:q40="attribute" ref="q40:DisplayPreferences" />
-        <xs:element xmlns:q41="attribute" ref="q41:PaperSize" />
-        <xs:element xmlns:q42="attribute" ref="q42:PageMargins" />
-        <xs:element xmlns:q43="attribute" ref="q43:PageOrientation" />
-        <xs:element xmlns:q44="attribute" ref="q44:PaperSource" />
-        <xs:element xmlns:q45="collection" ref="q45:Symbols" />
-      </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="optional" />
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ReferenceSymbol">
+  <xs:element name="PhysicalDiagrams">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q46="attribute" ref="q46:CreationDate" />
-        <xs:element xmlns:q47="attribute" ref="q47:ModificationDate" />
-        <xs:element xmlns:q48="attribute" ref="q48:Rect" />
-        <xs:element xmlns:q49="attribute" ref="q49:ListOfPoints" />
-        <xs:element minOccurs="0" xmlns:q50="attribute" ref="q50:CornerStyle" />
-        <xs:element xmlns:q51="attribute" ref="q51:ArrowStyle" />
-        <xs:element xmlns:q52="attribute" ref="q52:LineColor" />
-        <xs:element xmlns:q53="attribute" ref="q53:ShadowColor" />
-        <xs:element xmlns:q54="attribute" ref="q54:FontList" />
-        <xs:element xmlns:q55="collection" ref="q55:SourceSymbol" />
-        <xs:element xmlns:q56="collection" ref="q56:DestinationSymbol" />
-        <xs:element xmlns:q57="collection" ref="q57:Object" />
+        <xs:element maxOccurs="unbounded" xmlns:q3="object" ref="q3:PhysicalDiagram" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="TableSymbol">
-    <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q58="attribute" ref="q58:CreationDate" />
-        <xs:element xmlns:q59="attribute" ref="q59:ModificationDate" />
-        <xs:element xmlns:q60="attribute" ref="q60:Rect" />
-        <xs:element minOccurs="0" xmlns:q61="attribute" ref="q61:AutoAdjustToText" />
-        <xs:element xmlns:q62="attribute" ref="q62:LineColor" />
-        <xs:element xmlns:q63="attribute" ref="q63:FillColor" />
-        <xs:element xmlns:q64="attribute" ref="q64:ShadowColor" />
-        <xs:element xmlns:q65="attribute" ref="q65:FontList" />
-        <xs:element xmlns:q66="attribute" ref="q66:BrushStyle" />
-        <xs:element xmlns:q67="attribute" ref="q67:GradientFillMode" />
-        <xs:element xmlns:q68="attribute" ref="q68:GradientEndColor" />
-        <xs:element minOccurs="0" xmlns:q69="collection" ref="q69:ClonePredecessor" />
-        <xs:element minOccurs="0" xmlns:q70="attribute" ref="q70:ManuallyResized" />
-        <xs:element xmlns:q71="collection" ref="q71:Object" />
-      </xs:sequence>
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
-      <xs:attribute name="Id" type="xs:string" use="optional" />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Reference">
-    <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q72="attribute" ref="q72:ObjectID" />
-        <xs:element xmlns:q73="attribute" ref="q73:Name" />
-        <xs:element xmlns:q74="attribute" ref="q74:Code" />
-        <xs:element xmlns:q75="attribute" ref="q75:CreationDate" />
-        <xs:element xmlns:q76="attribute" ref="q76:Creator" />
-        <xs:element xmlns:q77="attribute" ref="q77:ModificationDate" />
-        <xs:element xmlns:q78="attribute" ref="q78:Modifier" />
-        <xs:element xmlns:q79="attribute" ref="q79:ForeignKeyConstraintName" />
-        <xs:element xmlns:q80="attribute" ref="q80:Cardinality" />
-        <xs:element xmlns:q81="collection" ref="q81:ParentTable" />
-        <xs:element xmlns:q82="collection" ref="q82:ChildTable" />
-        <xs:element minOccurs="0" xmlns:q83="collection" ref="q83:ParentKey" />
-        <xs:element xmlns:q84="collection" ref="q84:Joins" />
-      </xs:sequence>
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
-      <xs:attribute name="Id" type="xs:string" use="optional" />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Table">
-    <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q85="attribute" ref="q85:ObjectID" />
-        <xs:element xmlns:q86="attribute" ref="q86:Name" />
-        <xs:element xmlns:q87="attribute" ref="q87:Code" />
-        <xs:element xmlns:q88="attribute" ref="q88:CreationDate" />
-        <xs:element xmlns:q89="attribute" ref="q89:Creator" />
-        <xs:element xmlns:q90="attribute" ref="q90:ModificationDate" />
-        <xs:element xmlns:q91="attribute" ref="q91:Modifier" />
-        <xs:element xmlns:q92="attribute" ref="q92:Comment" />
-        <xs:element xmlns:q93="collection" ref="q93:Columns" />
-        <xs:element xmlns:q94="collection" ref="q94:Keys" />
-        <xs:element xmlns:q95="collection" ref="q95:Indexes" />
-        <xs:element xmlns:q96="collection" ref="q96:Owner" />
-        <xs:element xmlns:q97="collection" ref="q97:PrimaryKey" />
-        <xs:element xmlns:q98="collection" ref="q98:ClusterObject" />
-      </xs:sequence>
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
-      <xs:attribute name="Id" type="xs:string" use="optional" />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ViewSymbol">
-    <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q99="attribute" ref="q99:CreationDate" />
-        <xs:element xmlns:q100="attribute" ref="q100:ModificationDate" />
-        <xs:element xmlns:q101="attribute" ref="q101:Rect" />
-        <xs:element minOccurs="0" xmlns:q102="attribute" ref="q102:AutoAdjustToText" />
-        <xs:element xmlns:q103="attribute" ref="q103:LineColor" />
-        <xs:element xmlns:q104="attribute" ref="q104:FillColor" />
-        <xs:element xmlns:q105="attribute" ref="q105:ShadowColor" />
-        <xs:element xmlns:q106="attribute" ref="q106:FontList" />
-        <xs:element xmlns:q107="attribute" ref="q107:BrushStyle" />
-        <xs:element xmlns:q108="attribute" ref="q108:GradientFillMode" />
-        <xs:element xmlns:q109="attribute" ref="q109:GradientEndColor" />
-        <xs:element minOccurs="0" xmlns:q110="attribute" ref="q110:ManuallyResized" />
-        <xs:element xmlns:q111="collection" ref="q111:Object" />
-      </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="optional" />
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="View">
-    <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q112="attribute" ref="q112:ObjectID" />
-        <xs:element xmlns:q113="attribute" ref="q113:Name" />
-        <xs:element xmlns:q114="attribute" ref="q114:Code" />
-        <xs:element xmlns:q115="attribute" ref="q115:CreationDate" />
-        <xs:element xmlns:q116="attribute" ref="q116:Creator" />
-        <xs:element xmlns:q117="attribute" ref="q117:ModificationDate" />
-        <xs:element xmlns:q118="attribute" ref="q118:Modifier" />
-        <xs:element xmlns:q119="attribute" ref="q119:Comment" />
-        <xs:element xmlns:q120="attribute" ref="q120:View.SQLQuery" />
-        <xs:element xmlns:q121="attribute" ref="q121:TaggedSQLQuery" />
-        <xs:element xmlns:q122="attribute" ref="q122:UserDefinedSQL" />
-        <xs:element xmlns:q123="collection" ref="q123:Columns" />
-        <xs:element xmlns:q124="collection" ref="q124:View.Owner" />
-      </xs:sequence>
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
-      <xs:attribute name="Id" type="xs:string" use="optional" />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ExtendedDependencySymbol">
+  <xs:element name="Symbols">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q125="attribute" ref="q125:CreationDate" />
-        <xs:element xmlns:q126="attribute" ref="q126:ModificationDate" />
-        <xs:element xmlns:q127="attribute" ref="q127:Rect" />
-        <xs:element xmlns:q128="attribute" ref="q128:ListOfPoints" />
-        <xs:element minOccurs="0" xmlns:q129="attribute" ref="q129:CornerStyle" />
-        <xs:element xmlns:q130="attribute" ref="q130:ArrowStyle" />
-        <xs:element xmlns:q131="attribute" ref="q131:LineColor" />
-        <xs:element xmlns:q132="attribute" ref="q132:ShadowColor" />
-        <xs:element xmlns:q133="attribute" ref="q133:FontList" />
-        <xs:element xmlns:q134="collection" ref="q134:SourceSymbol" />
-        <xs:element xmlns:q135="collection" ref="q135:DestinationSymbol" />
-        <xs:element xmlns:q136="collection" ref="q136:Object" />
+        <xs:choice maxOccurs="unbounded">
+          <xs:element maxOccurs="unbounded" xmlns:q4="object" ref="q4:ReferenceSymbol" />
+          <xs:element maxOccurs="unbounded" xmlns:q5="object" ref="q5:ExtendedDependencySymbol" />
+          <xs:element maxOccurs="unbounded" xmlns:q6="object" ref="q6:TableSymbol" />
+          <xs:element maxOccurs="unbounded" xmlns:q7="object" ref="q7:ViewSymbol" />
+        </xs:choice>
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ExtendedDependency">
-    <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q137="attribute" ref="q137:ObjectID" />
-        <xs:element xmlns:q138="attribute" ref="q138:CreationDate" />
-        <xs:element xmlns:q139="attribute" ref="q139:Creator" />
-        <xs:element xmlns:q140="attribute" ref="q140:ModificationDate" />
-        <xs:element xmlns:q141="attribute" ref="q141:Modifier" />
-        <xs:element minOccurs="0" xmlns:q142="attribute" ref="q142:Stereotype" />
-        <xs:element xmlns:q143="collection" ref="q143:Object1" />
-        <xs:element xmlns:q144="collection" ref="q144:Object2" />
-      </xs:sequence>
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
-      <xs:attribute name="Id" type="xs:string" use="optional" />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="IntraModelReport">
+  <xs:element name="SourceSymbol">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q145="attribute" ref="q145:ObjectID" />
-        <xs:element xmlns:q146="attribute" ref="q146:Name" />
-        <xs:element xmlns:q147="attribute" ref="q147:Code" />
-        <xs:element xmlns:q148="attribute" ref="q148:CreationDate" />
-        <xs:element xmlns:q149="attribute" ref="q149:Creator" />
-        <xs:element xmlns:q150="attribute" ref="q150:ModificationDate" />
-        <xs:element xmlns:q151="attribute" ref="q151:Modifier" />
-        <xs:element xmlns:q152="attribute" ref="q152:GenerateEmptyParagraphs" />
-        <xs:element xmlns:q153="attribute" ref="q153:ReportFirstPageAuthor" />
-        <xs:element xmlns:q154="attribute" ref="q154:ReportFirstPageDate" />
-        <xs:element xmlns:q155="attribute" ref="q155:Summary" />
-        <xs:element xmlns:q156="attribute" ref="q156:HtmlStylesheetFile" />
-        <xs:element xmlns:q157="attribute" ref="q157:HtmlHeaderFile" />
-        <xs:element xmlns:q158="attribute" ref="q158:HtmlFooterFile" />
-        <xs:element xmlns:q159="attribute" ref="q159:HtmlHeaderSize" />
-        <xs:element xmlns:q160="attribute" ref="q160:HtmlFooterSize" />
-        <xs:element xmlns:q161="attribute" ref="q161:HtmlTOCLevel" />
-        <xs:element xmlns:q162="attribute" ref="q162:HtmlHomePageFile" />
-        <xs:element xmlns:q163="attribute" ref="q163:HtmlTemplate" />
-        <xs:element xmlns:q164="attribute" ref="q164:RtfTemplate" />
-        <xs:element xmlns:q165="attribute" ref="q165:RtfUseSectionHeadFoot" />
-        <xs:element xmlns:q166="collection" ref="q166:Paragraphs" />
-        <xs:element xmlns:q167="collection" ref="q167:Sections" />
-        <xs:element xmlns:q168="collection" ref="q168:ReportLanguages" />
-        <xs:element xmlns:q169="collection" ref="q169:TargetModels" />
+        <xs:element minOccurs="0" xmlns:q8="object" ref="q8:ViewSymbol" />
+        <xs:element minOccurs="0" xmlns:q9="object" ref="q9:TableSymbol" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReportTitleParagraph">
+  <xs:element name="DestinationSymbol">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q170="attribute" ref="q170:ObjectID" />
-        <xs:element xmlns:q171="attribute" ref="q171:CreationDate" />
-        <xs:element xmlns:q172="attribute" ref="q172:Creator" />
-        <xs:element xmlns:q173="attribute" ref="q173:ModificationDate" />
-        <xs:element xmlns:q174="attribute" ref="q174:Modifier" />
-        <xs:element xmlns:q175="attribute" ref="q175:ReportBaseParagraph.FontName" />
-        <xs:element xmlns:q176="attribute" ref="q176:FontHeight" />
-        <xs:element xmlns:q177="attribute" ref="q177:FontStyle" />
-        <xs:element minOccurs="0" xmlns:q178="attribute" ref="q178:FontCharset" />
-        <xs:element minOccurs="0" xmlns:q179="attribute" ref="q179:ReportBaseParagraph.Alignment" />
-        <xs:element minOccurs="0" xmlns:q180="attribute" ref="q180:SpaceBefore" />
-        <xs:element minOccurs="0" xmlns:q181="attribute" ref="q181:SpaceAfter" />
-        <xs:element minOccurs="0" xmlns:q182="attribute" ref="q182:BorderType" />
-        <xs:element minOccurs="0" xmlns:q183="attribute" ref="q183:BorderWidth" />
-        <xs:element minOccurs="0" xmlns:q184="attribute" ref="q184:Flow" />
-        <xs:element minOccurs="0" xmlns:q185="attribute" ref="q185:ParagraphInTable" />
-        <xs:element minOccurs="0" xmlns:q186="attribute" ref="q186:BoxWidth" />
-        <xs:element minOccurs="0" xmlns:q187="attribute" ref="q187:Box" />
+        <xs:element minOccurs="0" xmlns:q10="object" ref="q10:ViewSymbol" />
+        <xs:element minOccurs="0" xmlns:q11="object" ref="q11:TableSymbol" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReportParagraph">
+  <xs:element name="Object">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q188="attribute" ref="q188:ObjectID" />
-        <xs:element xmlns:q189="attribute" ref="q189:CreationDate" />
-        <xs:element xmlns:q190="attribute" ref="q190:Creator" />
-        <xs:element xmlns:q191="attribute" ref="q191:ModificationDate" />
-        <xs:element xmlns:q192="attribute" ref="q192:Modifier" />
-        <xs:element xmlns:q193="attribute" ref="q193:ReportBaseParagraph.FontName" />
-        <xs:element xmlns:q194="attribute" ref="q194:FontHeight" />
-        <xs:element minOccurs="0" xmlns:q195="attribute" ref="q195:FontCharset" />
-        <xs:element minOccurs="0" xmlns:q196="attribute" ref="q196:BorderType" />
-        <xs:element minOccurs="0" xmlns:q197="attribute" ref="q197:BorderWidth" />
-        <xs:element minOccurs="0" xmlns:q198="attribute" ref="q198:Flow" />
-        <xs:element minOccurs="0" xmlns:q199="attribute" ref="q199:ParagraphInTable" />
-        <xs:element minOccurs="0" xmlns:q200="attribute" ref="q200:BoxWidth" />
-        <xs:element minOccurs="0" xmlns:q201="attribute" ref="q201:ReportBaseParagraph.Alignment" />
-        <xs:element minOccurs="0" xmlns:q202="attribute" ref="q202:Box" />
+        <xs:element minOccurs="0" xmlns:q12="object" ref="q12:ExtendedDependency" />
+        <xs:element minOccurs="0" xmlns:q13="object" ref="q13:View" />
+        <xs:element minOccurs="0" xmlns:q14="object" ref="q14:Table" />
+        <xs:element minOccurs="0" xmlns:q15="object" ref="q15:Reference" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReportSection">
+  <xs:element name="ClonePredecessor">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q203="attribute" ref="q203:ObjectID" />
-        <xs:element xmlns:q204="attribute" ref="q204:Name" />
-        <xs:element xmlns:q205="attribute" ref="q205:CreationDate" />
-        <xs:element xmlns:q206="attribute" ref="q206:Creator" />
-        <xs:element xmlns:q207="attribute" ref="q207:ModificationDate" />
-        <xs:element xmlns:q208="attribute" ref="q208:Modifier" />
-        <xs:element xmlns:q209="attribute" ref="q209:ModelID" />
-        <xs:element xmlns:q210="attribute" ref="q210:TemplateFileName" />
-        <xs:element xmlns:q211="attribute" ref="q211:ItemInTemplate" />
-        <xs:element xmlns:q212="attribute" ref="q212:ItemRegistrationID" />
-        <xs:element xmlns:q213="attribute" ref="q213:ItemModuleID" />
-        <xs:element xmlns:q214="attribute" ref="q214:ReportTemplate.Header" />
-        <xs:element xmlns:q215="attribute" ref="q215:ExpandedHeader" />
-        <xs:element xmlns:q216="attribute" ref="q216:HeaderNeedsToBeExpanded" />
-        <xs:element xmlns:q217="attribute" ref="q217:ReportTemplate.Footer" />
-        <xs:element xmlns:q218="attribute" ref="q218:ExpandedFooter" />
-        <xs:element xmlns:q219="attribute" ref="q219:FooterNeedsToBeExpanded" />
-        <xs:element xmlns:q220="attribute" ref="q220:Margin" />
-        <xs:element xmlns:q221="attribute" ref="q221:MinimumMargin" />
-        <xs:element xmlns:q222="attribute" ref="q222:ReportTemplate.PaperSize" />
-        <xs:element xmlns:q223="collection" ref="q223:Items" />
-        <xs:element xmlns:q224="collection" ref="q224:Paragraphs" />
-        <xs:element xmlns:q225="collection" ref="q225:TargetModel" />
+        <xs:element xmlns:q16="object" ref="q16:TableSymbol" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="TitleReportItem">
+  <xs:element name="Reports">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q226="attribute" ref="q226:ObjectID" />
-        <xs:element xmlns:q227="attribute" ref="q227:CreationDate" />
-        <xs:element xmlns:q228="attribute" ref="q228:Creator" />
-        <xs:element xmlns:q229="attribute" ref="q229:ModificationDate" />
-        <xs:element xmlns:q230="attribute" ref="q230:Modifier" />
-        <xs:element xmlns:q231="attribute" ref="q231:ItemTOCEntry" />
-        <xs:element xmlns:q232="attribute" ref="q232:ItemInTemplate" />
-        <xs:element xmlns:q233="attribute" ref="q233:ItemRegistrationID" />
-        <xs:element xmlns:q234="attribute" ref="q234:ItemModuleID" />
-        <xs:element xmlns:q235="attribute" ref="q235:TitleReportItem.Text" />
-        <xs:element xmlns:q236="collection" ref="q236:Items" />
-        <xs:element xmlns:q237="collection" ref="q237:Paragraphs" />
+        <xs:element xmlns:q17="object" ref="q17:IntraModelReport" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ListReportItem">
+  <xs:element name="Paragraphs">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q238="attribute" ref="q238:ObjectID" />
-        <xs:element xmlns:q239="attribute" ref="q239:CreationDate" />
-        <xs:element xmlns:q240="attribute" ref="q240:Creator" />
-        <xs:element xmlns:q241="attribute" ref="q241:ModificationDate" />
-        <xs:element xmlns:q242="attribute" ref="q242:Modifier" />
-        <xs:element xmlns:q243="attribute" ref="q243:ItemTOCEntry" />
-        <xs:element xmlns:q244="attribute" ref="q244:ItemInTemplate" />
-        <xs:element xmlns:q245="attribute" ref="q245:ItemRegistrationID" />
-        <xs:element xmlns:q246="attribute" ref="q246:ItemModuleID" />
-        <xs:element xmlns:q247="attribute" ref="q247:DefaultTitle" />
-        <xs:element xmlns:q248="attribute" ref="q248:DefaultTitleFromResource" />
-        <xs:element xmlns:q249="attribute" ref="q249:Title" />
-        <xs:element minOccurs="0" xmlns:q250="attribute" ref="q250:UserDefined" />
-        <xs:element minOccurs="0" xmlns:q251="attribute" ref="q251:ShowTitle" />
-        <xs:element xmlns:q252="attribute" ref="q252:CollectionName" />
-        <xs:element xmlns:q253="attribute" ref="q253:Sorted" />
-        <xs:element xmlns:q254="attribute" ref="q254:ListReportItem.Layout" />
-        <xs:element minOccurs="0" xmlns:q255="collection" ref="q255:PersistentSelections" />
-        <xs:element xmlns:q256="collection" ref="q256:Paragraphs" />
-        <xs:element xmlns:q257="collection" ref="q257:Rows" />
+        <xs:element xmlns:q18="object" ref="q18:ReportTitleParagraph" />
+        <xs:element xmlns:q19="object" ref="q19:ReportParagraph" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ListRowDefinition">
+  <xs:element name="ReportLanguages">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q258="attribute" ref="q258:ObjectID" />
-        <xs:element xmlns:q259="attribute" ref="q259:CreationDate" />
-        <xs:element xmlns:q260="attribute" ref="q260:Creator" />
-        <xs:element xmlns:q261="attribute" ref="q261:ModificationDate" />
-        <xs:element xmlns:q262="attribute" ref="q262:Modifier" />
+        <xs:element xmlns:q20="object" ref="q20:Shortcut" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReportSelection">
+  <xs:element name="TargetModels">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q263="attribute" ref="q263:ObjectID" />
-        <xs:element xmlns:q264="attribute" ref="q264:Name" />
-        <xs:element xmlns:q265="attribute" ref="q265:CreationDate" />
-        <xs:element xmlns:q266="attribute" ref="q266:Creator" />
-        <xs:element xmlns:q267="attribute" ref="q267:ModificationDate" />
-        <xs:element xmlns:q268="attribute" ref="q268:Modifier" />
-        <xs:element xmlns:q269="attribute" ref="q269:ManagerID" />
-        <xs:element xmlns:q270="attribute" ref="q270:CriterionInfo" />
-        <xs:element xmlns:q271="attribute" ref="q271:SelectionModes" />
-        <xs:element xmlns:q272="attribute" ref="q272:ColumnFilters" />
+        <xs:element maxOccurs="unbounded" xmlns:q21="object" ref="q21:TargetModel" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReportBaseParagraph">
+  <xs:element name="DefaultDiagram">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q273="attribute" ref="q273:ObjectID" />
-        <xs:element xmlns:q274="attribute" ref="q274:CreationDate" />
-        <xs:element xmlns:q275="attribute" ref="q275:Creator" />
-        <xs:element xmlns:q276="attribute" ref="q276:ModificationDate" />
-        <xs:element xmlns:q277="attribute" ref="q277:Modifier" />
-        <xs:element xmlns:q278="attribute" ref="q278:ReportBaseParagraph.FontName" />
-        <xs:element xmlns:q279="attribute" ref="q279:FontHeight" />
-        <xs:element xmlns:q280="attribute" ref="q280:FontStyle" />
-        <xs:element minOccurs="0" xmlns:q281="attribute" ref="q281:FontCharset" />
-        <xs:element xmlns:q282="attribute" ref="q282:SpaceBefore" />
-        <xs:element xmlns:q283="attribute" ref="q283:SpaceAfter" />
-        <xs:element minOccurs="0" xmlns:q284="attribute" ref="q284:Box" />
+        <xs:element xmlns:q22="object" ref="q22:PhysicalDiagram" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="BookTitleReportItem">
+  <xs:element name="Users">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q285="attribute" ref="q285:ObjectID" />
-        <xs:element xmlns:q286="attribute" ref="q286:CreationDate" />
-        <xs:element xmlns:q287="attribute" ref="q287:Creator" />
-        <xs:element xmlns:q288="attribute" ref="q288:ModificationDate" />
-        <xs:element xmlns:q289="attribute" ref="q289:Modifier" />
-        <xs:element xmlns:q290="attribute" ref="q290:ItemTOCEntry" />
-        <xs:element xmlns:q291="attribute" ref="q291:ItemInTemplate" />
-        <xs:element xmlns:q292="attribute" ref="q292:ItemRegistrationID" />
-        <xs:element xmlns:q293="attribute" ref="q293:ItemModuleID" />
-        <xs:element xmlns:q294="attribute" ref="q294:DefaultTitle" />
-        <xs:element xmlns:q295="attribute" ref="q295:DefaultTitleFromResource" />
-        <xs:element xmlns:q296="attribute" ref="q296:Title" />
-        <xs:element minOccurs="0" xmlns:q297="attribute" ref="q297:UserDefined" />
-        <xs:element xmlns:q298="attribute" ref="q298:CollectionName" />
-        <xs:element xmlns:q299="collection" ref="q299:Items" />
-        <xs:element xmlns:q300="collection" ref="q300:Paragraphs" />
+        <xs:element xmlns:q23="object" ref="q23:User" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="CardReportItem">
+  <xs:element name="Domains">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q301="attribute" ref="q301:ObjectID" />
-        <xs:element xmlns:q302="attribute" ref="q302:CreationDate" />
-        <xs:element xmlns:q303="attribute" ref="q303:Creator" />
-        <xs:element xmlns:q304="attribute" ref="q304:ModificationDate" />
-        <xs:element xmlns:q305="attribute" ref="q305:Modifier" />
-        <xs:element xmlns:q306="attribute" ref="q306:ItemTOCEntry" />
-        <xs:element xmlns:q307="attribute" ref="q307:ItemInTemplate" />
-        <xs:element xmlns:q308="attribute" ref="q308:ItemRegistrationID" />
-        <xs:element xmlns:q309="attribute" ref="q309:ItemModuleID" />
-        <xs:element xmlns:q310="attribute" ref="q310:DefaultTitle" />
-        <xs:element xmlns:q311="attribute" ref="q311:DefaultTitleFromResource" />
-        <xs:element xmlns:q312="attribute" ref="q312:Title" />
-        <xs:element xmlns:q313="attribute" ref="q313:ShowTitle" />
-        <xs:element xmlns:q314="attribute" ref="q314:Layout" />
-        <xs:element xmlns:q315="collection" ref="q315:Paragraphs" />
+        <xs:element maxOccurs="unbounded" xmlns:q24="object" ref="q24:PhysicalDomain" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="AttributeTextReportItem">
+  <xs:element name="PhysicalDomain.Owner">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q316="attribute" ref="q316:ObjectID" />
-        <xs:element xmlns:q317="attribute" ref="q317:CreationDate" />
-        <xs:element xmlns:q318="attribute" ref="q318:Creator" />
-        <xs:element xmlns:q319="attribute" ref="q319:ModificationDate" />
-        <xs:element xmlns:q320="attribute" ref="q320:Modifier" />
-        <xs:element xmlns:q321="attribute" ref="q321:ItemTOCEntry" />
-        <xs:element xmlns:q322="attribute" ref="q322:ItemInTemplate" />
-        <xs:element xmlns:q323="attribute" ref="q323:ItemRegistrationID" />
-        <xs:element xmlns:q324="attribute" ref="q324:ItemModuleID" />
-        <xs:element xmlns:q325="attribute" ref="q325:DefaultTitle" />
-        <xs:element xmlns:q326="attribute" ref="q326:DefaultTitleFromResource" />
-        <xs:element xmlns:q327="attribute" ref="q327:Title" />
-        <xs:element minOccurs="0" xmlns:q328="attribute" ref="q328:UserDefined" />
-        <xs:element xmlns:q329="attribute" ref="q329:ShowTitle" />
-        <xs:element xmlns:q330="collection" ref="q330:Paragraphs" />
+        <xs:element xmlns:q25="object" ref="q25:User" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReportHeaderParagraph">
+  <xs:element name="Tables">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q331="attribute" ref="q331:ObjectID" />
-        <xs:element xmlns:q332="attribute" ref="q332:CreationDate" />
-        <xs:element xmlns:q333="attribute" ref="q333:Creator" />
-        <xs:element xmlns:q334="attribute" ref="q334:ModificationDate" />
-        <xs:element xmlns:q335="attribute" ref="q335:Modifier" />
-        <xs:element xmlns:q336="attribute" ref="q336:ReportBaseParagraph.FontName" />
-        <xs:element xmlns:q337="attribute" ref="q337:FontHeight" />
-        <xs:element xmlns:q338="attribute" ref="q338:FontCharset" />
-        <xs:element xmlns:q339="attribute" ref="q339:BorderType" />
-        <xs:element xmlns:q340="collection" ref="q340:Tabulations" />
+        <xs:element maxOccurs="unbounded" xmlns:q26="object" ref="q26:Table" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReportTabulation">
+  <xs:element name="Columns">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q341="attribute" ref="q341:ObjectID" />
-        <xs:element xmlns:q342="attribute" ref="q342:CreationDate" />
-        <xs:element xmlns:q343="attribute" ref="q343:Creator" />
-        <xs:element xmlns:q344="attribute" ref="q344:ModificationDate" />
-        <xs:element xmlns:q345="attribute" ref="q345:Modifier" />
-        <xs:element xmlns:q346="attribute" ref="q346:Position" />
-        <xs:element xmlns:q347="attribute" ref="q347:Alignment" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" xmlns:q27="object" ref="q27:ViewColumn" />
+        <xs:element minOccurs="0" maxOccurs="unbounded" xmlns:q28="object" ref="q28:Column" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReportFooterParagraph">
+  <xs:element name="Domain">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q348="attribute" ref="q348:ObjectID" />
-        <xs:element xmlns:q349="attribute" ref="q349:CreationDate" />
-        <xs:element xmlns:q350="attribute" ref="q350:Creator" />
-        <xs:element xmlns:q351="attribute" ref="q351:ModificationDate" />
-        <xs:element xmlns:q352="attribute" ref="q352:Modifier" />
-        <xs:element xmlns:q353="attribute" ref="q353:ReportBaseParagraph.FontName" />
-        <xs:element xmlns:q354="attribute" ref="q354:FontHeight" />
-        <xs:element xmlns:q355="attribute" ref="q355:FontCharset" />
-        <xs:element xmlns:q356="attribute" ref="q356:BorderType" />
-        <xs:element xmlns:q357="collection" ref="q357:Tabulations" />
+        <xs:element xmlns:q29="object" ref="q29:PhysicalDomain" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="TargetModel">
+  <xs:element name="Keys">
     <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q358="attribute" ref="q358:ObjectID" />
-        <xs:element xmlns:q359="attribute" ref="q359:Name" />
-        <xs:element xmlns:q360="attribute" ref="q360:Code" />
-        <xs:element xmlns:q361="attribute" ref="q361:CreationDate" />
-        <xs:element xmlns:q362="attribute" ref="q362:Creator" />
-        <xs:element xmlns:q363="attribute" ref="q363:ModificationDate" />
-        <xs:element xmlns:q364="attribute" ref="q364:Modifier" />
-        <xs:element xmlns:q365="attribute" ref="q365:TargetModelURL" />
-        <xs:element xmlns:q366="attribute" ref="q366:TargetModelID" />
-        <xs:element xmlns:q367="attribute" ref="q367:TargetModelClassID" />
-        <xs:element minOccurs="0" xmlns:q368="collection" ref="q368:SessionShortcuts" />
+      <xs:sequence>
+        <xs:element xmlns:q30="object" ref="q30:Key" />
       </xs:sequence>
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
-      <xs:attribute name="Id" type="xs:string" use="optional" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="User">
+  <xs:element name="Key.Columns">
     <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q369="attribute" ref="q369:ObjectID" />
-        <xs:element xmlns:q370="attribute" ref="q370:Name" />
-        <xs:element xmlns:q371="attribute" ref="q371:Code" />
-        <xs:element xmlns:q372="attribute" ref="q372:CreationDate" />
-        <xs:element xmlns:q373="attribute" ref="q373:Creator" />
-        <xs:element xmlns:q374="attribute" ref="q374:ModificationDate" />
-        <xs:element xmlns:q375="attribute" ref="q375:Modifier" />
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q31="object" ref="q31:Column" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="optional" />
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="PhysicalDomain">
+  <xs:element name="Indexes">
     <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q376="attribute" ref="q376:ObjectID" />
-        <xs:element xmlns:q377="attribute" ref="q377:Name" />
-        <xs:element xmlns:q378="attribute" ref="q378:Code" />
-        <xs:element xmlns:q379="attribute" ref="q379:CreationDate" />
-        <xs:element xmlns:q380="attribute" ref="q380:Creator" />
-        <xs:element xmlns:q381="attribute" ref="q381:ModificationDate" />
-        <xs:element xmlns:q382="attribute" ref="q382:Modifier" />
-        <xs:element minOccurs="0" xmlns:q383="attribute" ref="q383:HighValue" />
-        <xs:element minOccurs="0" xmlns:q384="attribute" ref="q384:Comment" />
-        <xs:element xmlns:q385="attribute" ref="q385:DataType" />
-        <xs:element minOccurs="0" xmlns:q386="attribute" ref="q386:Length" />
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q32="object" ref="q32:Index" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="optional" />
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LinkedObject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q33="object" ref="q33:Reference" />
+        <xs:element minOccurs="0" xmlns:q34="object" ref="q34:Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IndexColumns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q35="object" ref="q35:IndexColumn" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Column">
     <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q387="attribute" ref="q387:ObjectID" />
-        <xs:element xmlns:q388="attribute" ref="q388:Name" />
-        <xs:element xmlns:q389="attribute" ref="q389:Code" />
-        <xs:element xmlns:q390="attribute" ref="q390:CreationDate" />
-        <xs:element xmlns:q391="attribute" ref="q391:Creator" />
-        <xs:element xmlns:q392="attribute" ref="q392:ModificationDate" />
-        <xs:element xmlns:q393="attribute" ref="q393:Modifier" />
-        <xs:element xmlns:q394="attribute" ref="q394:Comment" />
-        <xs:element minOccurs="0" xmlns:q395="attribute" ref="q395:HighValue" />
-        <xs:element minOccurs="0" xmlns:q396="attribute" ref="q396:DefaultValue" />
-        <xs:element xmlns:q397="attribute" ref="q397:DataType" />
-        <xs:element minOccurs="0" xmlns:q398="attribute" ref="q398:Length" />
-        <xs:element minOccurs="0" xmlns:q399="attribute" ref="q399:Identity" />
-        <xs:element minOccurs="0" xmlns:q400="attribute" ref="q400:Mandatory" />
-        <xs:element minOccurs="0" xmlns:q401="collection" ref="q401:Domain" />
+      <xs:sequence>
+        <xs:element xmlns:q36="object" ref="q36:Column" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="optional" />
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="Key">
-    <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q402="attribute" ref="q402:ObjectID" />
-        <xs:element xmlns:q403="attribute" ref="q403:Name" />
-        <xs:element xmlns:q404="attribute" ref="q404:Code" />
-        <xs:element xmlns:q405="attribute" ref="q405:CreationDate" />
-        <xs:element xmlns:q406="attribute" ref="q406:Creator" />
-        <xs:element xmlns:q407="attribute" ref="q407:ModificationDate" />
-        <xs:element xmlns:q408="attribute" ref="q408:Modifier" />
-        <xs:element xmlns:q409="collection" ref="q409:Key.Columns" />
-      </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="optional" />
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="Index">
-    <xs:complexType>
-      <xs:sequence minOccurs="0">
-        <xs:element xmlns:q410="attribute" ref="q410:ObjectID" />
-        <xs:element xmlns:q411="attribute" ref="q411:Name" />
-        <xs:element xmlns:q412="attribute" ref="q412:Code" />
-        <xs:element xmlns:q413="attribute" ref="q413:CreationDate" />
-        <xs:element xmlns:q414="attribute" ref="q414:Creator" />
-        <xs:element xmlns:q415="attribute" ref="q415:ModificationDate" />
-        <xs:element xmlns:q416="attribute" ref="q416:Modifier" />
-        <xs:element minOccurs="0" xmlns:q417="attribute" ref="q417:Unique" />
-        <xs:element minOccurs="0" xmlns:q418="collection" ref="q418:LinkedObject" />
-        <xs:element xmlns:q419="collection" ref="q419:IndexColumns" />
-        <xs:element minOccurs="0" xmlns:q420="collection" ref="q420:BaseIndex.Owner" />
-      </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="optional" />
-      <xs:attribute name="Ref" type="xs:string" use="optional" />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="IndexColumn">
+  <xs:element name="BaseIndex.Owner">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q421="attribute" ref="q421:ObjectID" />
-        <xs:element xmlns:q422="attribute" ref="q422:CreationDate" />
-        <xs:element xmlns:q423="attribute" ref="q423:Creator" />
-        <xs:element xmlns:q424="attribute" ref="q424:ModificationDate" />
-        <xs:element xmlns:q425="attribute" ref="q425:Modifier" />
-        <xs:element xmlns:q426="collection" ref="q426:Column" />
+        <xs:element xmlns:q37="object" ref="q37:User" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ViewColumn">
+  <xs:element name="Owner">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q427="attribute" ref="q427:ObjectID" />
-        <xs:element xmlns:q428="attribute" ref="q428:Name" />
-        <xs:element xmlns:q429="attribute" ref="q429:Code" />
-        <xs:element xmlns:q430="attribute" ref="q430:CreationDate" />
-        <xs:element xmlns:q431="attribute" ref="q431:Creator" />
-        <xs:element xmlns:q432="attribute" ref="q432:ModificationDate" />
-        <xs:element xmlns:q433="attribute" ref="q433:Modifier" />
-        <xs:element minOccurs="0" xmlns:q434="attribute" ref="q434:Comment" />
-        <xs:element minOccurs="0" xmlns:q435="attribute" ref="q435:CustomName" />
-        <xs:element minOccurs="0" xmlns:q436="attribute" ref="q436:CustomComment" />
-        <xs:element minOccurs="0" xmlns:q437="attribute" ref="q437:CustomCode" />
+        <xs:element xmlns:q38="object" ref="q38:User" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ReferenceJoin">
+  <xs:element name="PrimaryKey">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q438="attribute" ref="q438:ObjectID" />
-        <xs:element xmlns:q439="attribute" ref="q439:CreationDate" />
-        <xs:element xmlns:q440="attribute" ref="q440:Creator" />
-        <xs:element xmlns:q441="attribute" ref="q441:ModificationDate" />
-        <xs:element xmlns:q442="attribute" ref="q442:Modifier" />
-        <xs:element xmlns:q443="collection" ref="q443:Object1" />
-        <xs:element xmlns:q444="collection" ref="q444:Object2" />
+        <xs:element xmlns:q39="object" ref="q39:Key" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
     </xs:complexType>
   </xs:element>
-  <xs:element name="Group">
+  <xs:element name="ClusterObject">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q445="attribute" ref="q445:ObjectID" />
-        <xs:element xmlns:q446="attribute" ref="q446:Name" />
-        <xs:element xmlns:q447="attribute" ref="q447:Code" />
-        <xs:element xmlns:q448="attribute" ref="q448:CreationDate" />
-        <xs:element xmlns:q449="attribute" ref="q449:Creator" />
-        <xs:element xmlns:q450="attribute" ref="q450:ModificationDate" />
-        <xs:element xmlns:q451="attribute" ref="q451:Modifier" />
-        <xs:element xmlns:q452="collection" ref="q452:Group.Users" />
+        <xs:element minOccurs="0" xmlns:q40="object" ref="q40:Key" />
+        <xs:element minOccurs="0" xmlns:q41="object" ref="q41:Index" />
       </xs:sequence>
-      <xs:attribute name="Id" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtendedCollections">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q42="object" ref="q42:ExtendedCollection" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Content">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q43="object" ref="q43:Column" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Views">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q44="object" ref="q44:View" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="View.Owner">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q45="object" ref="q45:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="View.Tables">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q46="object" ref="q46:Table" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ViewColumn.Columns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q47="object" ref="q47:Column" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="References">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q48="object" ref="q48:Reference" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ParentTable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q49="object" ref="q49:Table" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChildTable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q50="object" ref="q50:Table" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ParentKey">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q51="object" ref="q51:Key" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Joins">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q52="object" ref="q52:ReferenceJoin" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Object1">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q53="object" ref="q53:View" />
+        <xs:element minOccurs="0" xmlns:q54="object" ref="q54:Column" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Object2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" xmlns:q55="object" ref="q55:View" />
+        <xs:element minOccurs="0" xmlns:q56="object" ref="q56:Column" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DefaultGroups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q57="object" ref="q57:Group" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Group.Users">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q58="object" ref="q58:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChildExtendedDependencies">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" xmlns:q59="object" ref="q59:ExtendedDependency" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SessionShortcuts">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q60="object" ref="q60:Shortcut" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>

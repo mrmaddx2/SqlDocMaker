@@ -52,53 +52,19 @@
   <xs:element name="SpaceAfter" type="xs:unsignedByte" />
   <xs:element name="BorderType" type="xs:unsignedByte" />
   <xs:element name="Box" type="xs:unsignedByte" />
-  <xs:element name="ModelID" type="xs:string" />
-  <xs:element name="TemplateFileName" type="xs:string" />
-  <xs:element name="ItemInTemplate" type="xs:unsignedByte" />
-  <xs:element name="ItemRegistrationID" type="xs:string" />
-  <xs:element name="ItemModuleID" type="xs:string" />
-  <xs:element name="ReportTemplate.Header" type="xs:string" />
-  <xs:element name="ExpandedHeader" type="xs:string" />
-  <xs:element name="HeaderNeedsToBeExpanded" type="xs:unsignedByte" />
-  <xs:element name="ReportTemplate.Footer" type="xs:string" />
-  <xs:element name="ExpandedFooter" type="xs:string" />
-  <xs:element name="FooterNeedsToBeExpanded" type="xs:unsignedByte" />
-  <xs:element name="Margin" type="xs:string" />
-  <xs:element name="MinimumMargin" type="xs:string" />
-  <xs:element name="ReportTemplate.PaperSize" type="xs:string" />
-  <xs:element name="ItemTOCEntry" type="xs:unsignedByte" />
-  <xs:element name="TitleReportItem.Text" type="xs:string" />
-  <xs:element name="DefaultTitle" type="xs:string" />
-  <xs:element name="DefaultTitleFromResource" type="xs:string" />
-  <xs:element name="Title" type="xs:string" />
-  <xs:element name="CollectionName" type="xs:string" />
-  <xs:element name="Sorted" type="xs:unsignedByte" />
-  <xs:element name="ListReportItem.Layout" type="xs:string" />
-  <xs:element name="ParagraphInTable" type="xs:unsignedByte" />
-  <xs:element name="ManagerID" type="xs:unsignedByte" />
-  <xs:element name="CriterionInfo" type="xs:string" />
-  <xs:element name="SelectionModes" type="xs:string" />
-  <xs:element name="ColumnFilters" />
-  <xs:element name="FontCharset" type="xs:unsignedByte" />
-  <xs:element name="UserDefined" type="xs:unsignedByte" />
-  <xs:element name="ShowTitle" type="xs:unsignedByte" />
-  <xs:element name="Layout" type="xs:string" />
-  <xs:element name="BorderWidth" type="xs:unsignedByte" />
-  <xs:element name="Flow" type="xs:unsignedByte" />
-  <xs:element name="BoxWidth" type="xs:unsignedByte" />
-  <xs:element name="Position" type="xs:unsignedShort" />
-  <xs:element name="Alignment" type="xs:unsignedByte" />
   <xs:element name="TargetModelURL" type="xs:string" />
   <xs:element name="TargetModelID" type="xs:string" />
   <xs:element name="TargetModelClassID" type="xs:string" />
-  <xs:element name="Comment" type="xs:string" />
   <xs:element name="DataType" type="xs:string" />
+  <xs:element name="Comment" type="xs:string" />
+  <xs:element name="Mandatory" type="xs:unsignedByte" />
   <xs:element name="HighValue" type="xs:unsignedInt" />
   <xs:element name="Length" type="xs:unsignedShort" />
-  <xs:element name="Mandatory" type="xs:unsignedByte" />
+  <xs:element name="DefaultValue" type="xs:string" />
   <xs:element name="Unique" type="xs:unsignedByte" />
+  <xs:element name="ExtendedAttributesText" type="xs:string" />
   <xs:element name="Identity" type="xs:unsignedByte" />
-  <xs:element name="DefaultValue" type="xs:unsignedByte" />
+  <xs:element name="ExtendedBaseCollection.CollectionName" type="xs:string" />
   <xs:element name="View.SQLQuery" type="xs:string" />
   <xs:element name="TaggedSQLQuery" type="xs:string" />
   <xs:element name="UserDefinedSQL" type="xs:unsignedByte" />
@@ -107,5 +73,7 @@
   <xs:element name="CustomName" type="xs:string" />
   <xs:element name="ForeignKeyConstraintName" type="xs:string" />
   <xs:element name="Cardinality" type="xs:string" />
+  <xs:element name="DeleteConstraint" type="xs:unsignedByte" />
+  <xs:element name="Generated" type="xs:unsignedByte" />
   <xs:element name="Stereotype" type="xs:string" />
 </xs:schema>
