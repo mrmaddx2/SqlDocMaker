@@ -49,7 +49,7 @@
                     </xs:element>
                   </xs:sequence>
                   <!--Область поиска исходящего датасета.-->
-                  <xs:attribute default="AUTO" name="SearcArea" type="SearcAreaEnum" />
+                  <xs:attribute default="AUTO" name="SearchArea" type="SearchAreaEnum" />
                 </xs:complexType>
               </xs:element>
       </xs:sequence>
@@ -68,7 +68,7 @@
     </xs:complexType>
   </xs:element>
   <!--Тип-перечисление для указания области поиска исходящего датасета-->
-  <xs:simpleType name="SearcAreaEnum">
+  <xs:simpleType name="SearchAreaEnum">
     <xs:restriction base="xs:string">
       <!--NONE - не искать исходящий датасет вобще-->
       <xs:enumeration value="NONE" />

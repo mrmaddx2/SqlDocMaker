@@ -19,9 +19,9 @@ namespace Vitasoft.DocMaker.Core
             : base(sqlObject, dbSchemaReader, logger, model)
         {
 
-            var searchArea = (this.Doc != null && this.Doc.Output_Dataset != null) ? this.Doc.Output_Dataset.SearcArea : SearcAreaEnum.AUTO;
+            var searchArea = (this.Doc != null && this.Doc.Output_Dataset != null) ? this.Doc.Output_Dataset.SearchArea : SearchAreaEnum.AUTO;
 
-            if (searchArea == SearcAreaEnum.AUTO)
+            if (searchArea == SearchAreaEnum.AUTO)
             {
                 try
                 {
@@ -69,7 +69,7 @@ namespace Vitasoft.DocMaker.Core
 
                 }
             }
-            else if (searchArea == SearcAreaEnum.DOCONLY)
+            else if (searchArea == SearchAreaEnum.DOCONLY)
             {
                 if (!GetOutputDatasetInfoFromDoc())
                 {
@@ -79,7 +79,7 @@ namespace Vitasoft.DocMaker.Core
                     }
                 }
             }
-            else if (searchArea == SearcAreaEnum.NONE)
+            else if (searchArea == SearchAreaEnum.NONE)
             {
                 if (this._logger != null)
                 {

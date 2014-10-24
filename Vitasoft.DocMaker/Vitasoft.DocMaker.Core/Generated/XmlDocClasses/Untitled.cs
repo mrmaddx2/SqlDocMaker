@@ -296,10 +296,10 @@ namespace Vitasoft.DocMaker.Core {
         
         private DocOutput_DatasetField[] fieldsField;
         
-        private SearcAreaEnum searcAreaField;
+        private SearchAreaEnum searchAreaField;
         
         public DocOutput_Dataset() {
-            this.searcAreaField = SearcAreaEnum.AUTO;
+            this.searchAreaField = SearchAreaEnum.AUTO;
         }
         
         /// <remarks/>
@@ -316,14 +316,14 @@ namespace Vitasoft.DocMaker.Core {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        [System.ComponentModel.DefaultValueAttribute(SearcAreaEnum.AUTO)]
-        public SearcAreaEnum SearcArea {
+        [System.ComponentModel.DefaultValueAttribute(SearchAreaEnum.AUTO)]
+        public SearchAreaEnum SearchArea {
             get {
-                return this.searcAreaField;
+                return this.searchAreaField;
             }
             set {
-                this.searcAreaField = value;
-                this.RaisePropertyChanged("SearcArea");
+                this.searchAreaField = value;
+                this.RaisePropertyChanged("SearchArea");
             }
         }
         
@@ -405,7 +405,7 @@ namespace Vitasoft.DocMaker.Core {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.0.30319.33440")]
     [System.SerializableAttribute()]
-    public enum SearcAreaEnum {
+    public enum SearchAreaEnum {
         
         /// <remarks/>
         NONE,
