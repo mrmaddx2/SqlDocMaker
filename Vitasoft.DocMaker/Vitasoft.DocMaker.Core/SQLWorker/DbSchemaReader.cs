@@ -50,9 +50,11 @@ namespace Vitasoft.DocMaker.Core.SQLWorker
                         case "FN" :
                             functions.Add(new DocScalarFunction(sqlObject, this, logger, model));
                             break;
-                        case "IF":
+                        case "IF" :
                             functions.Add(new DocTableValueFunction(sqlObject, this, logger, model));
                             break;
+                        case "TF": 
+                            goto case "IF";
                         default: throw new Exception("Не известный тип функции: " + sqlObject.type);
                     }
                 }
