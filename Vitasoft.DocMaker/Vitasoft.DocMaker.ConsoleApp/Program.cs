@@ -193,6 +193,7 @@ namespace Vitasoft.DocMaker.ConsoleApp
 
                     foreach (string docName in distinctDocNames)
                     {
+                        logger.WriteLine("Сортировка заголовков файла " + docName, true);
                         #region Сортировка списка SQL объектов
 
                         #region Наполнение списков
@@ -322,6 +323,7 @@ namespace Vitasoft.DocMaker.ConsoleApp
                         sortSqlObjects = sortSqlObjects.OrderBy(x => x.sections).ToList();
                         #endregion
 
+                        logger.WriteLine("Запись в файл " + docName, true);
                         //Выгружаем во все указанные форматы
                         foreach (string outputFileExtension in xmlArguments.OutputFileTypes.Split(Convert.ToChar("|")).ToList())
                         {
