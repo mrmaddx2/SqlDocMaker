@@ -245,8 +245,15 @@ namespace Vitasoft.DocMaker.ConsoleApp
                         #endregion
 
                         #region Расстановка или замена приоритетов следования у заголовков, имеющих расхождения в заданных человеком значениях
+
+                        string infoText = string.Empty;
+                        string warningText = string.Empty;
+
                         foreach (DocObject docObject in ObjectsInCurrentDoc)
                         {
+                            string tmpInfoText = string.Empty;
+                            string tmpWarningText = string.Empty;
+
                             //Пробегаемся по всем указанным секциям, разделяемым |
                             foreach (DocSections currentSections in docObject.SectionsList)
                             {
@@ -259,11 +266,13 @@ namespace Vitasoft.DocMaker.ConsoleApp
                                     {
                                         if (currentSection.IsEmpty)
                                         {
-                                            
+                                            tmpInfoText += "    " + currentSection.Name + ": " + sameSection.section.Position.ToString() + Environment.NewLine;
                                         }
                                         else
                                         {
-                                            
+                                            tmpWarningText += "    " + currentSection.Name + ": " +
+                                                   currentSection.Position.ToString() + " --> " +
+                                                   sameSection.section.Position.ToString() + Environment.NewLine;
                                         }
 
                                         currentSection.Position = sameSection.section.Position;
@@ -271,9 +280,25 @@ namespace Vitasoft.DocMaker.ConsoleApp
                                 }
 
                                 sortSqlObjects.Add(new { docObject = docObject, sections = currentSections });
+
+                                infoText += !string.IsNullOrWhiteSpace(tmpInfoText) ? docObject.SqlObject.name + Environment.NewLine + tmpInfoText : tmpInfoText;
+                                warningText += !string.IsNullOrWhiteSpace(tmpWarningText) ? docObject.SqlObject.name + Environment.NewLine + tmpWarningText : tmpWarningText;
                             }
                         }
 
+                        if (!string.IsNullOrWhiteSpace(infoText))
+                        {
+                            infoText = "Расставляем приоритеты сортировки заголовков в объектах "  +
+                                   Environment.NewLine + infoText;
+                            logger.WriteLine(infoText);
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(warningText))
+                        {
+                            warningText = "Заменяем приоритеты сортировки заголовков в объектах " +
+                                   Environment.NewLine + warningText;
+                            logger.WriteWarning(warningText);
+                        }
                         
                         #endregion
 
