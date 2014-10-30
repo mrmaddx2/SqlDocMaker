@@ -8,13 +8,42 @@ namespace Vitasoft.DocMaker.Core
 {
     public class DocSection
     {
+        private int _position;
+
         public string Name { get; private set; }
-        public int? Position { get; set; }
+        public bool IsEmpty { get; private set; }
+
+        public int Position
+        {
+            get { return this._position; }
+            set { this._position = value == null || value == 0 ? int.MaxValue : (int) value; }
+        }
 
         public DocSection(string name, int? position = null)
         {
-            Name = name;
-            Position = position;
+            this.Name = name;
+            this._position = position == null || position == 0 ? int.MaxValue : (int)position;
+            this.IsEmpty = position == null ? true : false;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj != null && obj is DocSection)
+            {
+                DocSection tmpObj = obj as DocSection;
+
+                if (tmpObj.Name == this.Name && tmpObj.Position == this.Position)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public DocSection CopySection()
+        {
+            return new DocSection(this.Name, this.Position);
         }
     }
 
@@ -32,8 +61,8 @@ namespace Vitasoft.DocMaker.Core
 
                 for (int i = 0; i <= maxIndex - 1; i++)
                 {
-                    int thisIndex = this[i].Position == null || this[i].Position == 0 ? int.MaxValue : (int)this[i].Position;
-                    int inputIndex = inputDocSections[i].Position == null || inputDocSections[i].Position == 0 ? int.MaxValue : (int)inputDocSections[i].Position;
+                    int thisIndex = this[i].Position;
+                    int inputIndex = inputDocSections[i].Position;
 
                     if (thisIndex > inputIndex)
                     {

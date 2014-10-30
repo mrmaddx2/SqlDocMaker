@@ -206,119 +206,77 @@ namespace Vitasoft.DocMaker.ConsoleApp
 
                         //Затычка для создания пустого списка экземпляров анонимного класса
                         //Используется для замены и расстановки приоритетов следования заголовков.
-                        var sortSections =
+                        var minRankSections =
                             sqlObjects.Where(x => false)
-                                .Select(x => new { docObject = x, section = new DocSection(string.Empty), sectionIndex = (int)0 }).ToList();
+                                .Select(x => new { section = new DocSection(string.Empty), sectionIndex = (int)0 }).ToList();
+
+                        List<DocObject> ObjectsInCurrentDoc = sqlObjects.Where(x => x.GetFileName(xmlArguments) == docName).ToList();
 
                         //Все SQL располагаемые в текущем файле
-                        foreach (DocObject docObject in sqlObjects.Where(x => x.GetFileName(xmlArguments) == docName))
+                        foreach (DocObject docObject in ObjectsInCurrentDoc)
                         {
                             //Пробегаемся по всем указанным секциям, разделяемым |
                             foreach (DocSections currentSections in docObject.SectionsList)
                             {
-                                sortSqlObjects.Add(new { docObject = docObject, sections = currentSections });
-
                                 //По всем уровням секций, разделяемым \ или /
                                 foreach (DocSection currentSection in currentSections)
                                 {
-                                    sortSections.Add(
-                                        new
+                                    var sameSection = minRankSections.Where(x => x.section.Name == currentSection.Name && x.sectionIndex == currentSections.IndexOf(currentSection)).FirstOrDefault();
+
+                                    if (sameSection != null)
+                                    {
+                                        if (sameSection.section.Position > currentSection.Position)
                                         {
-                                            docObject = docObject,
-                                            section = currentSection,
-                                            sectionIndex = currentSections.IndexOf(currentSection)
-                                        });
+                                            sameSection.section.Position = currentSection.Position;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        minRankSections.Add(
+                                            new
+                                            {
+                                                section = currentSection.CopySection(),
+                                                sectionIndex = currentSections.IndexOf(currentSection)
+                                            });
+                                    }
                                 }
                             }
                         }
                         #endregion
 
                         #region Расстановка или замена приоритетов следования у заголовков, имеющих расхождения в заданных человеком значениях
-                        //Все объекты у которых встречаются расхождения в приоритетах следования заголовков.
-                        var errorSortRanks =
-                            sortSections.Where(
-                                x =>
-                                    sortSections.Any(
-                                        y =>
-                                            x != y &&
-                                            string.Equals(x.section.Name, y.section.Name,
-                                                StringComparison.InvariantCultureIgnoreCase) &&
-                                            x.sectionIndex == y.sectionIndex &&
-                                            (x.section.Position == null ? int.MaxValue : x.section.Position) !=
-                                            (y.section.Position == null ? int.MaxValue : y.section.Position)));
-
-
-                        //Определяем минимальный приоритет для заголовоков имеющих спорные значения
-                        var minSortRanks = from sortObject in errorSortRanks
-                                           group sortObject by new { sortObject.section.Name, sortObject.sectionIndex }
-                                               into g
-                                               select
-                                                   new
-                                                   {
-                                                       g.Key.Name,
-                                                       g.Key.sectionIndex,
-                                                       minPosition =
-                                                           (int)g.Min(x => x.section.Position == null ? int.MaxValue : x.section.Position)
-                                                   };
-
-                        string infoText;
-                        string warningText;
-
-                        //Для каждого объекта
-                        foreach (string sqlObjectName in errorSortRanks.Select(x => x.docObject.SqlObject.name).Distinct())
+                        foreach (DocObject docObject in ObjectsInCurrentDoc)
                         {
-                            infoText = string.Empty;
-                            warningText = string.Empty;
-
-                            //Находим список заголовков с ошибочными приоритетами
-                            foreach (var errorSortRank in errorSortRanks.Where(x => string.Equals(x.docObject.SqlObject.name, sqlObjectName, StringComparison.InvariantCultureIgnoreCase)))
+                            //Пробегаемся по всем указанным секциям, разделяемым |
+                            foreach (DocSections currentSections in docObject.SectionsList)
                             {
-                                //Находим эталонный приоритет для заголовка
-                                int newRank =
-                                    minSortRanks.First(
-                                        x =>
-                                            string.Equals(x.Name, errorSortRank.section.Name,
-                                                StringComparison.InvariantCultureIgnoreCase) &&
-                                            x.sectionIndex == errorSortRank.sectionIndex).minPosition;
-
-                                //Если текущий приоритет совпадает с эталонным - пропускаем
-                                if (errorSortRank.section.Position == newRank)
+                                //По всем уровням секций, разделяемым \ или /
+                                foreach (DocSection currentSection in currentSections)
                                 {
-                                    continue;
+                                    var sameSection = minRankSections.Where(x => x.section.Name == currentSection.Name && x.sectionIndex == currentSections.IndexOf(currentSection)).First();
+
+                                    if (currentSection.Position != sameSection.section.Position)
+                                    {
+                                        if (currentSection.IsEmpty)
+                                        {
+                                            
+                                        }
+                                        else
+                                        {
+                                            
+                                        }
+
+                                        currentSection.Position = sameSection.section.Position;
+                                    }
                                 }
 
-                                //Если приоритет для заголовка указан не во всех экземплярах - то считаем это нектитичной ситуацией и пишем в обычный лог.
-                                if (errorSortRank.section.Position == null)
-                                {
-                                    infoText += errorSortRank.section.Name + ": " + newRank.ToString() + Environment.NewLine;
-                                }
-                                //Если для заголовка указаны различные приоритеты - то считаем это ошибочной ситуацией и пишем в лог предупреждений.
-                                else if (errorSortRank.section.Position > newRank)
-                                {
-                                    warningText += errorSortRank.section.Name + ": " +
-                                                   errorSortRank.section.Position.ToString() + " --> " +
-                                                   newRank.ToString() + Environment.NewLine;
-                                }
-
-                                //Заменяем на эталонный приоритет
-                                errorSortRank.section.Position = newRank;
-                            }
-
-                            if (!string.IsNullOrWhiteSpace(infoText))
-                            {
-                                infoText = "Расставляем приоритеты сортировки заголовков в объекте " + sqlObjectName +
-                                       Environment.NewLine + infoText;
-                                logger.WriteLine(infoText);
-                            }
-
-                            if (!string.IsNullOrWhiteSpace(warningText))
-                            {
-                                warningText = "Заменяем приоритеты сортировки заголовков в объекте " + sqlObjectName +
-                                       Environment.NewLine + warningText;
-                                logger.WriteWarning(warningText);
+                                sortSqlObjects.Add(new { docObject = docObject, sections = currentSections });
                             }
                         }
+
+                        
                         #endregion
+
 
                         sortSqlObjects = sortSqlObjects.OrderBy(x => x.sections).ToList();
                         #endregion
